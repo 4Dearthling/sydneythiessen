@@ -1,30 +1,690 @@
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Sydney Thiessen</title>
-    <meta name="description" content="Sydney Thiessen's personal website">
-    <meta name="author" content="Sydney Thiessen">
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Hi, I'm Sydney.</h1>
-    <h2>I like solving problems that help the world and all the things in it.</h2>
-    <h2>Trained as an engineer and computer scientist.</h2>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #6366f1;
+            --accent-light: #818cf8;
+            --border: #2a2a2a;
+            --hover: #ffffff08;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .cursor-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.15s ease;
+            mix-blend-mode: difference;
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 2rem;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, 0.8);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid var(--accent);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            background: var(--hover);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .card .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-light);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin: 0.2rem 0.2rem 0 0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent);
+            background: var(--hover);
+        }
+
+        .skill-category h4 {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .skill-list {
+            list-style: none;
+            color: var(--text-secondary);
+        }
+
+        .skill-list li {
+            padding: 0.3rem 0;
+            font-size: 0.9rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.5rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+            transform: translateX(-5px);
+        }
+
+        .timeline-item h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .contact-section {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .contact-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover {
+            color: var(--accent);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: var(--text-secondary);
+            border-top: 1px solid var(--border);
+            margin-top: 6rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 4rem 1rem;
+            }
+            
+            .timeline {
+                padding-left: 1rem;
+            }
+            
+            .timeline-item {
+                padding-left: 1.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Selection styles */
+        ::selection {
+            background: var(--accent);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor-dot"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">Your Name</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Hello, I'm Sydney</h1>
+            <p>I'm passionate about research, problem-solving, pushing the bounds of human knowledge and hopefully making the world a bit of a better place while doing so. </p>
+            <a href="#about" class="cta-button">Get to know me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section fade-in">
+        <h2 class="section-title">About Me</h2>        
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Background</h3>
+                <p>I'm currently finishing a Degree in Computer Science at MacEwan University where I maintain a strong academic record and actively engage in research opportunities. I hold a degree in Mechanical Engineering from the University of Alberta. My journey has been shaped by a desire to fulfil a vision that integrates my strengths in mathematics, problem-solving, and artistic expression to understand something about the world that has never before been understood.</p>
+            </div>
+            
+            <div class="card">
+                <h3>Interests</h3>
+                <p>I am interested in creating computational models of the brains, what type of insights we can derive from the brain to use in artificial neural networks and vice versa. I would like to tailor my graduate degree to computational modelling, using machine learning methods to understand neural data, or designing and build robots to help people function in the world with a bit more ease. </p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section id="education" class="section fade-in">
+        <h2 class="section-title">Education</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Bachelor of Science in Computer Science</h3>
+                <div class="meta">MacEwan University • Expected 2025 • GPA: 3.8/4.0</div>
+                <p>Focusing on advanced coursework in mathematics, research methods, and data analysis. Active participant in research projects and academic organizations.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Dean's List 2023-2024</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h3>Bachelor of Science in Mechanical Engineering Co-op</h3>
+                <div class="meta">University of Alberta • Expected 2025 • GPA: 3.0/4.0</div>
+                <p>Focusing on advanced coursework in mathematics, research methods, and data analysis. Active participant in research projects and academic organizations.</p>
+            </div>  
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section fade-in">
+        <h2 class="section-title">Research & Projects</h2>
+        <p class="section-subtitle">Exploring ideas and contributing to knowledge</p>
+        
+        <div class="grid grid-2">
+            <div class="card">
+                <h3>Undergraduate Research</h3>
+                <div class="meta">Department of [Department] • 2023-Present</div>
+                <p>Working on [research topic] under the supervision of Dr. [Professor Name]. Conducting data analysis and contributing to ongoing publications in the field.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Data Analysis</span>
+                    <span class="tag">Publication</span>
+                    <span class="tag">[Research Area]</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Independent Study</h3>
+                <div class="meta">[Course Name] • Fall 2022</div>
+                <p>Designed and executed an original research project investigating [topic]. Received an A+ grade and recommendation for conference presentation.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Independent Research</span>
+                    <span class="tag">Conference Ready</span>
+                    <span class="tag">A+ Grade</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Research Publication</h3>
+                <div class="meta">Submitted to [Journal] • Under Review</div>
+                <p>"Title of Your Research Paper" - Co-authored with [names]. Research focuses on [brief description of research and its significance].</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Co-author</span>
+                    <span class="tag">Peer Review</span>
+                    <span class="tag">[Field]</span>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Conference Presentation</h3>
+                <div class="meta">[Conference Name] • [Year]</div>
+                <p>Presented original research findings on [topic] to an audience of researchers and academics in [location].</p>
+                <div style="margin-top: 1rem;">
+                    <span class="tag">Oral Presentation</span>
+                    <span class="tag">Academic Conference</span>
+                    <span class="tag">Original Research</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="work" class="section fade-in">
+        <h2 class="section-title">Experience</h2>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Teaching Assistant</h3>
+                <div class="meta">[Course Name] • University Name • Fall 2023</div>
+                <p>Assisted in teaching undergraduate course with 150+ students. Led discussion sections, conducted office hours, and received excellent teaching evaluations (4.8/5.0).</p>
+            </div>
+            
+            <div class="timeline-item">
+                <h3>Summer Research Intern</h3>
+                <div class="meta">[Company/Organization] • Summer 2023</div>
+                <p>Gained hands-on experience in [field], completed [specific project], and collaborated with professional teams on [project type].</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section fade-in">
+        <h2 class="section-title">Skills & Expertise</h2>
+        
+        <div class="skill-grid">
+            <div class="skill-category">
+                <h4>Programming</h4>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>R</li>
+                    <li>MATLAB</li>
+                    <li>Java</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Analytics</h4>
+                <ul class="skill-list">
+                    <li>SPSS</li>
+                    <li>SAS</li>
+                    <li>Stata</li>
+                    <li>Excel</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Research</h4>
+                <ul class="skill-list">
+                    <li>Literature Review</li>
+                    <li>Data Collection</li>
+                    <li>Survey Design</li>
+                    <li>Experimental Design</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Tools</h4>
+                <ul class="skill-list">
+                    <li>LaTeX</li>
+                    <li>Git/GitHub</li>
+                    <li>Zotero</li>
+                    <li>Adobe Suite</li>
+                </ul>
+            </div>
+            
+            <div class="skill-category">
+                <h4>Languages</h4>
+                <ul class="skill-list">
+                    <li>English (Native)</li>
+                    <li>Spanish (Conversational)</li>
+                    <li>[Other] (Basic)</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section fade-in">
+        <div class="contact-section">
+            <h2>Let's Connect</h2>
+            <p>I'm always interested in discussing research opportunities, academic collaborations, or just having a conversation about [your field].</p>
+            
+            <div class="contact-info">
+                <a href="mailto:your.email@university.edu" class="contact-item">your.email@university.edu</a>
+                <a href="tel:+15551234567" class="contact-item">(555) 123-4567</a>
+                <a href="https://linkedin.com/in/yourname" class="contact-item">LinkedIn</a>
+                <a href="#" class="contact-item">Download CV</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Your Name. Built with passion for learning and discovery.</p>
+    </footer>
+
+    <script>
+        // Custom cursor
+        const cursor = document.querySelector('.cursor-dot');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Interactive card effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(-4px) scale(1)';
+            });
+        });
+    </script>
+</body>
 </html>
-
-<b>Hi, I'm Sydney Thiessen</b>
-
-<p>Engineer. Computer Scientist. 
-Student. Problem Solver.
-</p>
-<p>I like solving problems that help people.</p>
-
-
-<b>Projects</b>
 
 
 
