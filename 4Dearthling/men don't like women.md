@@ -1,0 +1,7 @@
+they have not taught to be men, they have been taught to not be like women. 
+Don't be a pussy, be a man.
+Don't through like a girl.
+Don't be sensitive, be a man.
+This is taught using shame. the worst thing you could have been told is that you are like a woman. 
+
+but this is not just what men are taught, this is what women are taught too. We are taught that being a woman is shameful, that no one would want to be us, that we are somehow inferiror and weak. The differences between men and women amplified to give men asylum from shame. But all this does is say that if they aren't like women they won't be ashamed as that is the greatest sin. But what is a woman and what is a man? All these things that are considered womanly, all that is left should be considered manly right? But after feeling emotion, moving your body in most ways, experiencing the world in any way that is emotional (so are you experiencing anything at all) what is there left other than moving your body a few very select rigid ways? Women were oppressed, they were told they were shameful, but men are actually the ones oppressed because they have been given the masculine manuscript, the doctrine on how to exist so that shame will not follow you. Women have been damned if they do and damned if they don't for centuries, but men have hope that if they act a certain way , maybe they can outrun shame. 
