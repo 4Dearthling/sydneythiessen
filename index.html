@@ -1,692 +1,467 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name</title>
+    <title>Your Name - Graduate School Portfolio</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #1a1a1a;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent: #6366f1;
-            --accent-light: #818cf8;
-            --border: #2a2a2a;
-            --hover: #ffffff08;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #faf7f2 0%, #f0ead6 100%);
+            color: #2d4a3e;
+            min-height: 100vh;
+            position: relative;
             overflow-x: hidden;
         }
 
-        .cursor-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--accent);
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.15s ease;
-            mix-blend-mode: difference;
-        }
-
-        .nav {
+        /* Navigation */
+        nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 100;
-            padding: 2rem;
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 10, 0.8);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--text-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-weight: 400;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.1) 0%, transparent 50%);
-        }
-
-        .hero-content h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 300;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-            max-width: 600px;
-        }
-
-        .cta-button {
-            display: inline-block;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 1rem 2rem;
-            background: var(--accent);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            border: 1px solid var(--accent);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
-        .cta-button:hover {
-            background: transparent;
-            color: var(--accent);
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #2d4a3e;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background: #e8f4e8;
             transform: translateY(-2px);
         }
 
-        .section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+        .resume-btn {
+            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+            color: white !important;
+            box-shadow: 0 4px 15px rgba(107, 157, 107, 0.3);
         }
 
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin-bottom: 3rem;
-            text-align: center;
+        .resume-btn:hover {
+            background: linear-gradient(45deg, #4a7c59, #3d6b47) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(107, 157, 107, 0.4);
         }
 
-        .section-subtitle {
-            color: var(--text-secondary);
-            text-align: center;
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
-        }
-
-        .grid {
-            display: grid;
-            gap: 2rem;
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-
-        .card {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
+        /* Main Content */
+        main {
+            margin-top: 100px;
             padding: 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section {
+            display: none;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 20;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #e8f4e8, #d4f4d4);
+            border: 4px solid #6b9d6b;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4a7c59;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d4a3e;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+            font-weight: 300;
+        }
+
+        h2 {
+            color: #4a7c59;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        h3 {
+            color: #6b9d6b;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .intro-text {
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            color: #4a5d4a;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #f8fdf8, #eef7ee);
+            padding: 2rem;
+            border-radius: 15px;
+            border: 2px solid #e8f4e8;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .card::before {
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(107, 157, 107, 0.2);
+            border-color: #6b9d6b;
+        }
+
+        .project-card::before {
             content: '';
             position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            height: 4px;
+            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+            border-radius: 15px 15px 0 0;
+        }
+
+        /* Resume Modal */
+        .modal {
+            display: none;
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent), transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
         }
 
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-4px);
-            background: var(--hover);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--text-primary);
-        }
-
-        .card .meta {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .tag {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            color: var(--accent-light);
-            padding: 0.3rem 0.8rem;
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
             border-radius: 20px;
-            font-size: 0.8rem;
-            margin: 0.2rem 0.2rem 0 0;
-            border: 1px solid rgba(99, 102, 241, 0.2);
+            max-width: 90%;
+            max-height: 90%;
+            overflow: auto;
         }
 
-        .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
         }
 
-        .skill-category {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 1.5rem;
-            text-align: center;
+        .download-btn {
+            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 1rem 0;
             transition: all 0.3s ease;
         }
 
-        .skill-category:hover {
-            border-color: var(--accent);
-            background: var(--hover);
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 157, 107, 0.4);
         }
 
-        .skill-category h4 {
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
+        /* Decorative Elements */
+        .vine-decoration {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .skill-list {
-            list-style: none;
-            color: var(--text-secondary);
-        }
-
-        .skill-list li {
-            padding: 0.3rem 0;
-            font-size: 0.9rem;
-        }
-
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
+        .vine-left {
             bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
+            left: 0;
+            width: 200px;
+            height: 100vh;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800'%3E%3Cpath d='M20 800Q40 750 60 700T100 600Q120 550 100 500T60 400Q40 350 60 300T120 200Q140 150 120 100T80 50Q60 25 40 12T20 0' stroke='%236b9d6b' stroke-width='3' fill='none' opacity='0.6'/%3E%3Ccircle cx='30' cy='750' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='80' cy='650' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='50' cy='550' r='10' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='90' cy='450' r='7' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='70' cy='350' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='110' cy='250' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='85' cy='150' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='55' cy='100' r='5' fill='%23ff69b4' opacity='0.8'/%3E%3C/svg%3E") no-repeat;
+            background-size: contain;
+            animation: sway 6s ease-in-out infinite;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 2rem;
+        .vine-right {
+            bottom: 0;
+            right: 0;
+            width: 180px;
+            height: 100vh;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 800'%3E%3Cpath d='M160 800Q140 750 120 700T80 600Q60 550 80 500T120 400Q140 350 120 300T60 200Q40 150 60 100T100 50Q120 25 140 12T160 0' stroke='%234a7c59' stroke-width='3' fill='none' opacity='0.6'/%3E%3Ccircle cx='150' cy='780' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='100' cy='680' r='9' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='130' cy='580' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='90' cy='480' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='110' cy='380' r='10' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='70' cy='280' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='95' cy='180' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='125' cy='80' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3C/svg%3E") no-repeat;
+            background-size: contain;
+            animation: sway 8s ease-in-out infinite reverse;
         }
 
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -2rem;
-            top: 0.5rem;
-            width: 12px;
-            height: 12px;
-            background: var(--accent);
-            border-radius: 50%;
-            transform: translateX(-5px);
+        .flowers-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cg%3E%3Ccircle cx='100' cy='80' r='12' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='95' cy='85' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='105' cy='85' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='100' cy='75' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='300' cy='90' r='10' fill='%23ff1493' opacity='0.8'/%3E%3Ccircle cx='295' cy='95' r='7' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='305' cy='95' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='300' cy='85' r='5' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='500' cy='85' r='14' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='495' cy='90' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='505' cy='90' r='9' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='500' cy='80' r='7' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='700' cy='95' r='11' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='695' cy='100' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='705' cy='100' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='700' cy='90' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='900' cy='75' r='13' fill='%23ff1493' opacity='0.8'/%3E%3Ccircle cx='895' cy='80' r='9' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='905' cy='80' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='900' cy='70' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='1100' cy='85' r='12' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='1095' cy='90' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='1105' cy='90' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='1100' cy='80' r='6' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E") repeat-x;
+            pointer-events: none;
+            z-index: 5;
+            animation: flowerSway 10s ease-in-out infinite;
         }
 
-        .timeline-item h3 {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+        @keyframes sway {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            50% { transform: translateX(10px) rotate(2deg); }
         }
 
-        .timeline-item .meta {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
+        @keyframes flowerSway {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
-        .timeline-item p {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .contact-section {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 3rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .contact-item {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item:hover {
-            color: var(--accent);
-        }
-
-        .footer {
-            text-align: center;
-            padding: 3rem 2rem;
-            color: var(--text-secondary);
-            border-top: 1px solid var(--border);
-            margin-top: 6rem;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .nav {
-                padding: 1rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .hero-content h1 {
-                font-size: 3rem;
-            }
-            
-            .section {
-                padding: 4rem 1rem;
-            }
-            
-            .timeline {
-                padding-left: 1rem;
-            }
-            
-            .timeline-item {
-                padding-left: 1.5rem;
-            }
-            
-            .contact-info {
+            nav ul {
                 flex-direction: column;
                 gap: 1rem;
             }
-        }
-
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Selection styles */
-        ::selection {
-            background: var(--accent);
-            color: white;
+            
+            nav {
+                padding: 1rem;
+            }
+            
+            main {
+                margin-top: 180px;
+                padding: 1rem;
+            }
+            
+            .section {
+                padding: 2rem 1rem;
+            }
+            
+            .vine-left, .vine-right {
+                width: 100px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="cursor-dot"></div>
-
-    <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-content">
-            <div class="logo">Your Name</div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#work">Work</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+    <nav>
+        <ul>
+            <li><a href="#" onclick="showSection('home')">Home</a></li>
+            <li><a href="#" onclick="showSection('projects')">Projects</a></li>
+            <li><a href="#" onclick="openResume()" class="resume-btn">Resume & CV</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Hello, I'm Sydney</h1>
-            <p>I'm passionate about research, problem-solving, pushing the bounds of human knowledge and hopefully making the world a bit of a better place while doing so. </p>
-            <a href="#about" class="cta-button">Get to know me</a>
-        </div>
-    </section>
+    <main>
+        <section id="home" class="section active">
+            <div class="profile-photo">👋</div>
+            <h1>Your Name</h1>
+            <p class="intro-text">
+                Welcome to my graduate school portfolio! I'm a passionate [Your Field] enthusiast with a love for [Your Interests]. 
+                Currently pursuing opportunities in graduate studies, I'm excited to share my journey, projects, and aspirations with you.
+                <br><br>
+                Take a moment to explore my work and discover what drives my academic pursuits. From innovative research projects 
+                to creative solutions, I'm dedicated to making a meaningful impact in [Your Field].
+            </p>
+        </section>
 
-    <!-- About Section -->
-    <section id="about" class="section fade-in">
-        <h2 class="section-title">About Me</h2>        
-        <div class="grid grid-2">
-            <div class="card">
-                <h3>Background</h3>
-                <p>I'm currently finishing a Degree in Computer Science at MacEwan University where I maintain a strong academic record and actively engage in research opportunities. I hold a degree in Mechanical Engineering from the University of Alberta. My journey has been shaped by a desire to fulfil a vision that integrates my strengths in mathematics, problem-solving, and artistic expression to understand something about the world that has never before been understood.</p>
-            </div>
-            
-            <div class="card">
-                <h3>Interests</h3>
-                <p>I am interested in creating computational models of the brains, what type of insights we can derive from the brain to use in artificial neural networks and vice versa. I would like to tailor my graduate degree to computational modelling, using machine learning methods to understand neural data, or designing and build robots to help people function in the world with a bit more ease. </p>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Timeline -->
-    <section id="education" class="section fade-in">
-        <h2 class="section-title">Education</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Bachelor of Science in Computer Science</h3>
-                <div class="meta">MacEwan University • Expected 2025 • GPA: 3.8/4.0</div>
-                <p>Coursework in Machine Learning, AI, Graph Theory, Linear Algebra, Software Engineering, Statistics, and Databases.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Dean's List 2023-2024</span>
+        <section id="projects" class="section">
+            <h2>My Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Project Title 1</h3>
+                    <p>Brief description of your first project. Highlight the key technologies used, your role, and the impact or results achieved. This could be research, coding projects, or academic work.</p>
+                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
+                    <p><strong>Impact:</strong> Quantify results if possible</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Project Title 2</h3>
+                    <p>Description of your second project. Focus on the problem you solved, your approach, and what you learned from the experience. Include any collaboration or leadership aspects.</p>
+                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
+                    <p><strong>Skills Developed:</strong> Key learnings</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Project Title 3</h3>
+                    <p>Another significant project that showcases your abilities. This could be academic research, a capstone project, or independent work that demonstrates your readiness for graduate school.</p>
+                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
+                    <p><strong>Recognition:</strong> Awards, publications, etc.</p>
+                </div>
+                
+                <div class="project-card">
+                    <h3>Project Title 4</h3>
+                    <p>Additional project that rounds out your portfolio. Consider including diverse types of work to show your range of interests and capabilities.</p>
+                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
+                    <p><strong>Duration:</strong> Timeline of the project</p>
                 </div>
             </div>
+        </section>
+    </main>
 
-            <div class="timeline-item">
-                <h3>Bachelor of Science in Mechanical Engineering Co-op</h3>
-                <div class="meta">University of Alberta • Expected 2025 • GPA: 3.0/4.0</div>
-                <p>Coursework in </p>
-            </div>  
-        </div>
-    </section>
-
-    <!-- Research Section -->
-    <section id="research" class="section fade-in">
-        <h2 class="section-title">Research & Projects</h2>
-        <p class="section-subtitle">Exploring ideas and contributing to knowledge</p>
-        
-        <div class="grid grid-2">
-            <div class="card">
-                <h3>Undergraduate Research</h3>
-                <div class="meta">Department of [Department] • 2023-Present</div>
-                <p>Working on [research topic] under the supervision of Dr. [Professor Name]. Conducting data analysis and contributing to ongoing publications in the field.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Data Analysis</span>
-                    <span class="tag">Publication</span>
-                    <span class="tag">[Research Area]</span>
-                </div>
-            </div>
+    <!-- Resume Modal -->
+    <div id="resumeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeResume()">&times;</span>
+            <h2>Resume & CV</h2>
+            <button class="download-btn" onclick="downloadResume()">📥 Download PDF</button>
             
-            <div class="card">
-                <h3>Independent Study</h3>
-                <div class="meta">[Course Name] • Fall 2022</div>
-                <p>Designed and executed an original research project investigating [topic]. Received an A+ grade and recommendation for conference presentation.</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Independent Research</span>
-                    <span class="tag">Conference Ready</span>
-                    <span class="tag">A+ Grade</span>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>Research Publication</h3>
-                <div class="meta">Submitted to [Journal] • Under Review</div>
-                <p>"Title of Your Research Paper" - Co-authored with [names]. Research focuses on [brief description of research and its significance].</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Co-author</span>
-                    <span class="tag">Peer Review</span>
-                    <span class="tag">[Field]</span>
-                </div>
-            </div>
-            
-            <div class="card">
-                <h3>Conference Presentation</h3>
-                <div class="meta">[Conference Name] • [Year]</div>
-                <p>Presented original research findings on [topic] to an audience of researchers and academics in [location].</p>
-                <div style="margin-top: 1rem;">
-                    <span class="tag">Oral Presentation</span>
-                    <span class="tag">Academic Conference</span>
-                    <span class="tag">Original Research</span>
-                </div>
+            <div style="margin-top: 2rem; padding: 2rem; background: #f9f9f9; border-radius: 10px;">
+                <h3>Your Name</h3>
+                <p>Email: your.email@example.com | Phone: (123) 456-7890</p>
+                <p>LinkedIn: linkedin.com/in/yourname | Portfolio: yourwebsite.com</p>
+                
+                <h4 style="margin-top: 2rem; color: #4a7c59;">Education</h4>
+                <p><strong>Bachelor of Science in [Your Major]</strong><br>
+                University Name, Graduation Year<br>
+                GPA: X.XX/4.0 | Relevant Coursework: List key courses</p>
+                
+                <h4 style="margin-top: 2rem; color: #4a7c59;">Experience</h4>
+                <p><strong>Job Title</strong> - Company Name (Dates)<br>
+                • Bullet point describing your responsibilities and achievements<br>
+                • Another bullet point with quantifiable results<br>
+                • Third bullet point showcasing relevant skills</p>
+                
+                <h4 style="margin-top: 2rem; color: #4a7c59;">Research Experience</h4>
+                <p><strong>Research Position</strong> - Institution (Dates)<br>
+                • Description of research project and your contributions<br>
+                • Methodology and tools used<br>
+                • Results or publications</p>
+                
+                <h4 style="margin-top: 2rem; color: #4a7c59;">Skills</h4>
+                <p><strong>Technical:</strong> Programming languages, software, tools<br>
+                <strong>Languages:</strong> List languages and proficiency levels<br>
+                <strong>Research:</strong> Relevant research skills and methodologies</p>
+                
+                <h4 style="margin-top: 2rem; color: #4a7c59;">Awards & Publications</h4>
+                <p>• List any academic awards, scholarships, or honors<br>
+                • Include publications, presentations, or significant projects<br>
+                • Mention any leadership roles or extracurricular activities</p>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Experience Section -->
-    <section id="work" class="section fade-in">
-        <h2 class="section-title">Experience</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <h3>Teaching Assistant</h3>
-                <div class="meta">[Course Name] • University Name • Fall 2023</div>
-                <p>Assisted in teaching undergraduate course with 150+ students. Led discussion sections, conducted office hours, and received excellent teaching evaluations (4.8/5.0).</p>
-            </div>
-            
-            <div class="timeline-item">
-                <h3>Summer Research Intern</h3>
-                <div class="meta">[Company/Organization] • Summer 2023</div>
-                <p>Gained hands-on experience in [field], completed [specific project], and collaborated with professional teams on [project type].</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section fade-in">
-        <h2 class="section-title">Skills & Expertise</h2>
-        
-        <div class="skill-grid">
-            <div class="skill-category">
-                <h4>Programming</h4>
-                <ul class="skill-list">
-                    <li>Python</li>
-                    <li>R</li>
-                    <li>MATLAB</li>
-                    <li>Java</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Analytics</h4>
-                <ul class="skill-list">
-                    <li>SPSS</li>
-                    <li>SAS</li>
-                    <li>Stata</li>
-                    <li>Excel</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Research</h4>
-                <ul class="skill-list">
-                    <li>Literature Review</li>
-                    <li>Data Collection</li>
-                    <li>Survey Design</li>
-                    <li>Experimental Design</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Tools</h4>
-                <ul class="skill-list">
-                    <li>LaTeX</li>
-                    <li>Git/GitHub</li>
-                    <li>Zotero</li>
-                    <li>Adobe Suite</li>
-                </ul>
-            </div>
-            
-            <div class="skill-category">
-                <h4>Languages</h4>
-                <ul class="skill-list">
-                    <li>English (Native)</li>
-                    <li>Spanish (Conversational)</li>
-                    <li>[Other] (Basic)</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section fade-in">
-        <div class="contact-section">
-            <h2>Let's Connect</h2>
-            <p>I'm always interested in discussing research opportunities, academic collaborations, or just having a conversation about [your field].</p>
-            
-            <div class="contact-info">
-                <a href="mailto:your.email@university.edu" class="contact-item">your.email@university.edu</a>
-                <a href="tel:+15551234567" class="contact-item">(555) 123-4567</a>
-                <a href="https://linkedin.com/in/yourname" class="contact-item">LinkedIn</a>
-                <a href="#" class="contact-item">Download CV</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>&copy; 2024 Your Name. Built with passion for learning and discovery.</p>
-    </footer>
+    <!-- Decorative Elements -->
+    <div class="vine-decoration vine-left"></div>
+    <div class="vine-decoration vine-right"></div>
+    <div class="flowers-bottom"></div>
 
     <script>
-        // Custom cursor
-        const cursor = document.querySelector('.cursor-dot');
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-
-        // Interactive card effects
-        document.querySelectorAll('.card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
+        function showSection(sectionName) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
             });
             
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(-4px) scale(1)';
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+        }
+
+        function openResume() {
+            document.getElementById('resumeModal').style.display = 'block';
+        }
+
+        function closeResume() {
+            document.getElementById('resumeModal').style.display = 'none';
+        }
+
+        function downloadResume() {
+            // In a real implementation, this would download your actual PDF
+            alert('In a real website, this would download your resume PDF file. Please upload your actual resume PDF and link it here!');
+            
+            // Example of how to trigger a PDF download:
+            // const link = document.createElement('a');
+            // link.href = 'path/to/your/resume.pdf';
+            // link.download = 'YourName_Resume.pdf';
+            // link.click();
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('resumeModal');
+            if (event.target === modal) {
+                closeResume();
+            }
+        }
+
+        // Add some interactive flower animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const flowers = document.querySelector('.flowers-bottom');
+            let isHovered = false;
+            
+            flowers.addEventListener('mouseenter', function() {
+                if (!isHovered) {
+                    this.style.animation = 'flowerSway 2s ease-in-out infinite';
+                    isHovered = true;
+                }
             });
         });
     </script>
 </body>
 </html>
-
-
-
-
-
