@@ -105,6 +105,20 @@
             }
         }
 
+        .text-background {
+        background-color: lightblue; /* Choose your desired background color */
+        padding: 10px; /* Add padding around the text */
+        border-radius: 5px; /* Optional: for rounded corners */
+        display: inline-block; /* Useful for div if you want it to only take up content width */
+        }
+
+        .highlighted-text {
+            background-color: yellow;
+            padding: 5px;
+            border-radius: 3px;
+        }
+
+
         .profile-photo {
             width: 150px;
             height: 150px;
@@ -141,7 +155,7 @@
         }
 
         .intro-text {
-            text-align: center;
+            text-align: left;
             font-size: 1.1rem;
             line-height: 1.8;
             margin-bottom: 3rem;
@@ -320,7 +334,8 @@
     <main>
         
             <div class="profile-photo">👋</div>
-            <h1>About Me</h1>
+            <div class = "text-background">
+            <h2>About Me</h2>
             <p class="intro-text">
                 I am student at MacEwan University finishing up my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on 
                 a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to analyzing audio files to classify and predict the progression of voice disorders in ALS patients.
@@ -329,15 +344,18 @@
                 My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
                 at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
             </p>
+            </div>
 
 
             <h2>My Projects</h2>
             <div class="project-grid">
                 <div class="project-card">
-                    <h3>Project Title 1</h3>
-                    <p>Brief description of your first project. Highlight the key technologies used, your role, and the impact or results achieved. This could be research, coding projects, or academic work.</p>
-                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
-                    <p><strong>Impact:</strong> Quantify results if possible</p>
+                    <h3>Mentor Match</h3>
+                    <p>Designed and developed <italic>Mentor Match</italic>, a tutor student matching application featuring a swipe-card interface for discovering tutors. Built with Kotlin in Android Studio following the MVVM architecture, and integrated with Firebase for backend functionality.
+                    <br><br>
+                    Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.                    
+                    
+                    </p>
                 </div>
                 
                 <div class="project-card">
