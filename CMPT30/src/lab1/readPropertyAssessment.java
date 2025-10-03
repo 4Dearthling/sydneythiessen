@@ -8,9 +8,9 @@ import java.util.Arrays;
 
 /*use arrays.asLis(array (String[])).contains(element (string))*/
 
-public class ReadCSV {
+public class readPropertyAssessment {
     public static void main(String[] args) {
-        String csvFileName = "Property_Assessment_Data_2025.csv";
+        String csvFileName = "Property_Assessment_Data_2025_Small.csv";
 
         try {
             String[][] data = readData(csvFileName);
@@ -64,25 +64,12 @@ public class ReadCSV {
         return Arrays.copyOf(data, index);
     }
 
-        /**
-     * Print all rows of data.
-     *
-     * @param data - 2D array containing data
-     */
-    private static void printData(String[][] data) {
-        System.out.println("The number of records: " + data.length);
-        for (String[] row : data) {
-            System.out.println("Date: " + row[0]);
-            System.out.println("Symbol: " + row[1]);
-            System.out.printf("Closing price: $%.2f\n", Double.parseDouble(row[3]));
-        }
-    }
 
     private static void recordCount(String[][] data) {
         System.out.println("The number of records: " + data.length);
     }
 
-   private static void assessedValueMinMax(String[][] data) {
+    private static void assessedValueMinMax(String[][] data) {
         int assessedValueCol = 8;
         int min = 0;
         int max = 0;
@@ -118,12 +105,9 @@ public class ReadCSV {
                 continue;
             }
 
-            if (index == wards.length){
-                //resize array
-                wards = Arrays.copyOf(wards, wards.length * 2);
-            }
+            wards = addToArray(row[wardCol], wards, index);
+            index++;
 
-            wards[index++] = row[wardCol];
         }
         System.out.println("The number of wards: " + index);
    }
@@ -137,17 +121,23 @@ public class ReadCSV {
            if (row[assessClassCol].isEmpty() || Arrays.asList(assessClasses).contains(row[assessClassCol])){
                continue;
            }
+           assessClasses = addToArray(row[assessClassCol], assessClasses, index);
+           index++;
 
-           if (index == assessClasses.length){
-               //resize array
-               assessClasses = Arrays.copyOf(assessClasses, assessClasses.length * 2);
-           }
-
-           assessClasses[index++] = row[assessClassCol];
        }
 
        System.out.println("The Property Assessment Classes in Edmonton are: " + Arrays.toString(Arrays.copyOf(assessClasses, index)));
 
    }
+
+   private static String[] addToArray(String element, String[] array, int index) {
+       if (index == array.length){
+           //resize array
+           array = Arrays.copyOf(array, array.length * 2);
+       }
+       array[index] = element;
+       return array;
+   }
+
 }
 
