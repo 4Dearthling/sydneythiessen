@@ -20,124 +20,37 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #2d4a3e;
-            font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a:hover {
-            background: #e8f4e8;
-            transform: translateY(-2px);
-        }
-
-        .resume-btn {
-            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
-            color: white !important;
-            box-shadow: 0 4px 15px rgba(107, 157, 107, 0.3);
-        }
-
-        .resume-btn:hover {
-            background: linear-gradient(45deg, #4a7c59, #3d6b47) !important;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(107, 157, 107, 0.4);
-        }
-
         /* Main Content */
         main {
-            margin-top: 200px;
+            margin-top: 50px;
             padding: 2rem;
             position: relative;
             z-index: 10;
         }
 
-        .section {
-            display: none;
-            max-width: 1600px;
+        .content-container {
+            max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 2rem;
             background: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             box-shadow: 0 10px 40px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
-            position: relative;
-            z-index: 20;
-        }
-
-        .section.active {
-            display: block;
-            animation: fadeInUp 0.6s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .text-background {
-        background-color: rgba(255, 255, 255, 0.7); /* Choose your desired background color */
-        border: 1px sold rgba(0,0,0,0.2);
-        padding: 10px; /* Add padding around the text */
-        border-radius: 15px; /* Optional: for rounded corners */
-        display: inline-block; /* Useful for div if you want it to only take up content width */
-        }
-
-        .highlighted-text {
-            background-color: yellow;
-            padding: 5px;
-            border-radius: 3px;
-        }
-
-
-        .profile-photo {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #e8f4e8, #d4f4d4);
-            border: 4px solid #6b9d6b;
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: #4a7c59;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 15px;
+            display: inline-block;
         }
 
         h1 {
-            text-align: center;
+            text-align: left;
             color: #2d4a3e;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
             font-size: 2.5rem;
             font-weight: 300;
         }
@@ -145,14 +58,17 @@
         h2 {
             color: #4a7c59;
             margin-bottom: 1.5rem;
-            font-size: 2rem;
-            text-align: center;
+            margin-top: 2rem;
+            font-size: 1.8rem;
+            text-align: left;
         }
 
         h3 {
             color: #6b9d6b;
             margin-bottom: 1rem;
-            font-size: 1.3rem;
+            margin-top: 2rem;
+            font-size: 1.4rem;
+            text-align: left;
         }
 
         .intro-text {
@@ -163,38 +79,134 @@
             color: #4a5d4a;
         }
 
-        .project-grid {
+        /* Header with title and button */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .page-header h1 {
+            margin: 0;
+        }
+
+        /* Project Sections */
+        .project-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e8f4e8;
+        }
+
+        .project-section:last-child {
+            border-bottom: none;
+        }
+
+        .project-section p {
+            line-height: 1.8;
+            color: #4a5d4a;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Image Gallery Styles */
+        .image-gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
-        .project-card {
-            background: linear-gradient(135deg, #f8fdf8, #eef7ee);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 2px solid #e8f4e8;
+        .image-gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            border: 2px solid #e8f4e8;
         }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(107, 157, 107, 0.2);
+        .image-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
             border-color: #6b9d6b;
         }
 
-        .project-card::before {
-            content: '';
+        /* Video Container Styles */
+        .video-container {
+            margin: 1.5rem 0;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px solid #e8f4e8;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-container:hover {
+            box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
+            border-color: #6b9d6b;
+        }
+
+        .video-container video {
+            width: 100%;
+            max-height: 400px;
+            display: block;
+        }
+
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img,
+        .lightbox-content video {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
             position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            height: 4px;
-            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
-            border-radius: 15px 15px 0 0;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.5);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(107, 157, 107, 0.8);
+            transform: rotate(90deg);
         }
 
         /* Resume Modal */
@@ -234,13 +246,13 @@
         .download-btn {
             background: linear-gradient(45deg, #6b9d6b, #4a7c59);
             color: white;
-            padding: 1rem 2rem;
+            padding: 0.75rem 1.5rem;
             border: none;
             border-radius: 25px;
             font-size: 1rem;
             cursor: pointer;
-            margin: 1rem 0;
             transition: all 0.3s ease;
+            white-space: nowrap;
         }
 
         .download-btn:hover {
@@ -248,166 +260,163 @@
             box-shadow: 0 5px 15px rgba(107, 157, 107, 0.4);
         }
 
-        /* Decorative Elements */
-        .vine-decoration {
-            position: fixed;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .vine-left {
-            bottom: 0;
-            left: 0;
-            width: 200px;
-            height: 100vh;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 800'%3E%3Cpath d='M20 800Q40 750 60 700T100 600Q120 550 100 500T60 400Q40 350 60 300T120 200Q140 150 120 100T80 50Q60 25 40 12T20 0' stroke='%236b9d6b' stroke-width='3' fill='none' opacity='0.6'/%3E%3Ccircle cx='30' cy='750' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='80' cy='650' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='50' cy='550' r='10' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='90' cy='450' r='7' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='70' cy='350' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='110' cy='250' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='85' cy='150' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='55' cy='100' r='5' fill='%23ff69b4' opacity='0.8'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-            animation: sway 6s ease-in-out infinite;
-        }
-
-        .vine-right {
-            bottom: 0;
-            right: 0;
-            width: 180px;
-            height: 100vh;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 800'%3E%3Cpath d='M160 800Q140 750 120 700T80 600Q60 550 80 500T120 400Q140 350 120 300T60 200Q40 150 60 100T100 50Q120 25 140 12T160 0' stroke='%234a7c59' stroke-width='3' fill='none' opacity='0.6'/%3E%3Ccircle cx='150' cy='780' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='100' cy='680' r='9' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='130' cy='580' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='90' cy='480' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='110' cy='380' r='10' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='70' cy='280' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='95' cy='180' r='6' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='125' cy='80' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3C/svg%3E") no-repeat;
-            background-size: contain;
-            animation: sway 8s ease-in-out infinite reverse;
-        }
-
-        .flowers-bottom {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 120px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'%3E%3Cg%3E%3Ccircle cx='100' cy='80' r='12' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='95' cy='85' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='105' cy='85' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='100' cy='75' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='300' cy='90' r='10' fill='%23ff1493' opacity='0.8'/%3E%3Ccircle cx='295' cy='95' r='7' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='305' cy='95' r='7' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='300' cy='85' r='5' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='500' cy='85' r='14' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='495' cy='90' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='505' cy='90' r='9' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='500' cy='80' r='7' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='700' cy='95' r='11' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='695' cy='100' r='8' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='705' cy='100' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='700' cy='90' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='900' cy='75' r='13' fill='%23ff1493' opacity='0.8'/%3E%3Ccircle cx='895' cy='80' r='9' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='905' cy='80' r='9' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='900' cy='70' r='6' fill='%23fff'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='1100' cy='85' r='12' fill='%23ffb6c1' opacity='0.9'/%3E%3Ccircle cx='1095' cy='90' r='8' fill='%23ff69b4' opacity='0.8'/%3E%3Ccircle cx='1105' cy='90' r='8' fill='%23ff1493' opacity='0.7'/%3E%3Ccircle cx='1100' cy='80' r='6' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E") repeat-x;
-            pointer-events: none;
-            z-index: 5;
-            animation: flowerSway 10s ease-in-out infinite;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: translateX(0) rotate(0deg); }
-            50% { transform: translateX(10px) rotate(2deg); }
-        }
-
-        @keyframes flowerSway {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            nav {
-                padding: 1rem;
-            }
-            
             main {
-                margin-top: 180px;
+                margin-top: 30px;
                 padding: 1rem;
             }
             
-            .section {
+            .content-container {
                 padding: 2rem 1rem;
             }
-            
-            .vine-left, .vine-right {
-                width: 100px;
+
+            .image-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .image-gallery img {
+                height: 150px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#" onclick="showSection('home')">Home</a></li>
-            <li><a href="#" onclick="showSection('projects')">Projects</a></li>
-            <li><a href="#" onclick="openResume()" class="resume-btn">Resume & CV</a></li>
-        </ul>
-    </nav>
-
     <main>
-        
-            <div class = "text-background">
-            <h2>About Me</h2>
-            <p class="intro-text">
-                I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
-                My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
-                <br><br>
-                My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
-                at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
-            </p>
-          
+        <div class="content-container">
+            <section id="about">
+                <div class="page-header">
+                    <h1>About Me</h1>
+                    <button class="download-btn" onclick="downloadResume()">📥 Download PDF</button>
+                </div>
+                <p class="intro-text">
+                    I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
+                    My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
+                    <br><br>
+                    My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
+                    at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
+                </p>
+            </section>
 
+            <section id="projects">
+                <h1>My Projects</h1>
+                <h2><em>In Progress</em></h2>
 
-            <h2>My Projects</h2>
-
-            <h3>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h3>
+                <div class="project-section">
+                    <h3>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h3>
+                    
                     <div class="image-gallery">
-                        <img src="img/Dysarthria_classifier/ID313_phonationI.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
-                        <img src="img/Dysarthria_classifier/ID329_phonationI.png" alt="Profile View" onclick="openLightbox(this.src)">
+                        <img src="img/Dysarthria_classifier/ID319_phonationU.png" alt="Phonation Analysis" onclick="openLightbox(this.src)">
+                        <img src="img/Dysarthria_classifier/ID333_rhythmTA.png" alt="Rhythm Analysis" onclick="openLightbox(this.src)">
                     </div>
+                    
                     <p>
                         Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking, with the opportunity for top-performing teams to present at IEEE ICASSP 2026. The challenge addresses the critical need for objective, noninvasive biomarkers to enable early diagnosis and monitoring of neurodegenerative diseases, particularly amyotrophic lateral sclerosis (ALS).
-                        
-                        Working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing*, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria).
-                        
+                        <br><br>
+                        Working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria).
+                        <br><br>
                         The second task focuses on predictive modeling to forecast disease progression by estimating future ALSFRS-R scale values based on historical patient data. This prediction challenge is strengthening my abilities in analyzing data collected over time from the same patients, building regression models to predict numerical severity scores, and understanding how speech impairment patterns evolve as the disease progresses.
-                        
+                        <br><br>
                         Through this ongoing work, I am gaining experience in biomedical signal analysis and transformer-based architectures for audio processing, learning to extract clinically meaningful acoustic features such as prosody, phonation quality, and articulation metrics from spectrogram representations. I am developing skills in data preprocessing and augmentation techniques specific to audio data, as well as hyperparameter optimization to maximize model performance.
-                        
+                        <br><br>
                         This challenge is enhancing my research and literature review skills as I examine the use of audio spectrogram transformers for dysarthria classification, evaluating how this state-of-the-art approach performs on phonation-based speech data rather than word-based speech, specifically sustained vowels (A, E, I, O, U) and rhythmic syllable sequences (TA, PA, KA). This interdisciplinary project bridges computer science, machine learning, and clinical neuroscience, integrating signal processing and health data analysis to develop tools that could aid in the early detection and monitoring of neurodegenerative diseases.
-                        </p>
+                    </p>
+                </div>
 
-                        <h3>Tutle: A Tutor-Student Marketplace</h3>
-                        <p>in progress</p>
+                <div class="project-section">
+                    <h3>Tutle: A Tutor-Student Marketplace</h3>
+                    
+                    <p>
+                        Co-leading a team of 7 developers to build a comprehensive commercial tutoring mobile application that connects students with qualified tutors through a secure, feature-rich platform. The application addresses both sides of the tutoring marketplace: empowering tutors with professional practice management tools while providing students with an intuitive interface for discovering and engaging with quality educators.
+                        <br><br>
+                        Built with React Native to provide a seamless cross-platform experience on both iOS and Android devices, leveraging a single codebase for efficient development and consistent user experience. The backend infrastructure utilizes PostgreSQL for robust relational data management, handling complex relationships between users, sessions, payments, and reviews.
+                        <br><br>
+                        For tutors, the application provides a comprehensive session management dashboard for tracking student progress, scheduling, and earnings, along with a custom booking platform that allows them to set availability, pricing, and subject specialties. The system includes automated session reminders, calendar integration, and performance analytics to help tutors monitor student engagement and optimize their teaching practice.
+                        <br><br>
+                        For students, the platform offers advanced tutor discovery with filtering capabilities by subject, location, price range, and availability. Students have access to their own session management interface for organizing upcoming appointments, tracking completed sessions, and managing their tutoring schedule. The platform includes an innovative Tamagotchi-style gamification feature that motivates continued engagement by rewarding students with points for booking sessions, attending their tutoring appointments, and leaving reviews. These earned points can be used to care for and interact with their virtual companion, creating a playful incentive system that encourages consistent participation in their educational journey. Students can also access their complete session history, visualize their progress over time, and utilize an integrated review and rating system to inform future booking decisions.
+                        <br><br>
+                        Safety and trust are foundational to the platform. All tutors must submit vulnerable sector checks before being approved to offer services, ensuring student safety for in-person sessions. The application implements secure payment processing through Stripe, with payments processed immediately upon session booking to protect both parties and streamline the transaction flow.
+                        <br><br>
+                        A key feature of the platform is the real-time map integration that allows users to securely share their location and find each other for in-person tutoring sessions. This feature prioritizes user privacy by only sharing location data during active session windows and implementing proximity-based meeting coordination to ensure safe and convenient meetups.
+                        <br><br>
+                        The project architecture emphasizes scalability and maintainability, leveraging Supabase as the backend-as-a-service platform to manage database operations, authentication, and real-time data synchronization. The implementation utilizes Supabase's client libraries for efficient database queries and real-time subscriptions for live booking updates and messaging features. The system implements secure authentication and authorization protocols to protect sensitive user data and payment information. Integrating AI-powered development assistants into the workflow to optimize code quality, debug efficiently, and explore alternative architectural approaches has enhanced development velocity and code reliability.
+                        <br><br>
+                        As co-lead, I am responsible for UI and UX design decisions, technical architecture decisions, sprint planning and task delegation, code review processes, and ensuring adherence to best practices in mobile development. This project is developing my skills in React Native mobile development and cross-platform optimization, team leadership and project management, PostgreSQL database schema design, backend integration with Supabase, payment gateway integration with the Stripe API, real-time location services and mapping APIs, security best practices and user data protection, AI-assisted development workflows, stakeholder communication and product planning.
+                    </p>
+                </div>
 
-                        <h3>4D Body Scanner for Telehealth</h3>
-                        <div class="video-container">
-                            <video controls>
-                                <source src="img/4D_body_scanner/cat_wave_trimmed.mp4" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="image-gallery">
-                            <img src="img/4D_body_scanner/full_design_v2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
-                            <img src="img/4D_body_scanner/human_constraints_diagram-1.png" alt="Profile View" onclick="openLightbox(this.src)">
-                            <img src="img/4D_body_scanner/setup_checkerboard.png" alt="Match Screen" onclick="openLightbox(this.src)">
-                        </div>
-                        <p>I collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation and reconstruction.
+                <h2><em>Completed</em></h2>
+
+                <div class="project-section">
+                    <h3>4D Body Scanning for Remote Health Monitoring</h3>
+                    
+                    <div class="video-container" onclick="openLightbox(this.querySelector('video').src, 'video')">
+                        <video controls>
+                            <source src="img/4D_body_scanner/cat_wave_trimmed.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    
+                    <div class="image-gallery">
+                        <img src="img/4D_body_scanner/full_design_v2.png" alt="Scanner Design" onclick="openLightbox(this.src)">
+                        <img src="img/4D_body_scanner/human_constraints_diagram-1.png" alt="Human Constraints" onclick="openLightbox(this.src)">
+                        <img src="img/4D_body_scanner/setup_checkerboard.png" alt="Calibration Setup" onclick="openLightbox(this.src)">
+                    </div>
+                    
+                    <p>
+                        I collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation and reconstruction.
+                        <br><br>
                         During the development phase, I conducted a comprehensive feasibility analysis of two competing system architectures: a stationary multi-sensor array and a rotational scanning design. By examining human and practical constraints against the limitations of each system, we determined that the rotational approach was necessary to achieve our target frame rate while maintaining scan quality. This process deepened my understanding of system architecture design and the engineering trade-offs involved in design.
+                        <br><br>
                         The project required extensive work in system calibration and synchronization to ensure accurate data capture across multiple sensors as well as point cloud processing and registration for the merging of and creating on 3D + time datasets. The alignment algorithms that were utilized were Iterative Closest Point and Fast Point Feature Histograms with RANSAC. I developed skills in sensor calibration and hardware-software integration, particularly when prototyping with motorized tracks, stepper motors, and spinning LIDARs—components that informed our design decisions even though they didn't appear in the final implementation.
-                        This experience strengthened my abilities in data pipeline development, managing the flow from raw sensor input through processing stages to final output, as well as technical documentation to track our design iterations and performance benchmarks. The collaborative nature of the project enhanced my research communication skills and ability to integrate complementary technical expertise toward a unified goal.</p>
+                        <br><br>
+                        This experience strengthened my abilities in data pipeline development, managing the flow from raw sensor input through processing stages to final output, as well as technical documentation to track our design iterations and performance benchmarks. The collaborative nature of the project enhanced my research communication skills and ability to integrate complementary technical expertise toward a unified goal.
+                    </p>
+                </div>
 
+                <div class="project-section">
                     <h3>Mentor Match</h3>
+                    
                     <div class="image-gallery">
                         <img src="img/MentorMatch/image-2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
                         <img src="img/MentorMatch/image-3.png" alt="Profile View" onclick="openLightbox(this.src)">
                         <img src="img/MentorMatch/image-4.png" alt="Match Screen" onclick="openLightbox(this.src)">
                         <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-6.png" alt="Chat Feature" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-6.png" alt="Additional Feature" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image.png" alt="App Overview" onclick="openLightbox(this.src)">
                     </div>
-                    <p> Led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. Built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture to ensure separation of concerns, maintainability, and testability. Integrated Firebase for backend functionality, including Firebase Authentication for secure user login, Cloud Firestore for real-time database management, and Firebase Storage for user profile media.
-                        Implemented custom UI components including the swipe-card gesture interface. Created an availability management features that allowed users to input their availability that behaved as a bitmap in the backend to find availability between students and tutors to use in our matching algorithm. Built a real-time chat system using Firebase Cloud Messaging to facilitate seamless communication between matched users. 
-                        The application architecture emphasized clean code principles and scalability, with a well-structured repository pattern for data access and reactive programming using LiveData and ViewModel for UI state management. Implemented proper error handling and input validation to ensure a robust user experience.
-                        The team engaged in agile development practices, including sprint planning, pair programming, and iterative feature deployment. Used Git for version control.
-                        Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.                 
                     
+                    <p>
+                        I co-led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. It was built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture to ensure separation of concerns, maintainability, and testability. The back-end was integrated with Firebase, including Firebase Authentication for secure user login, Cloud Firestore for real-time database management, and Firebase Storage for user profile media.
+                        <br><br>
+                        We implemented custom UI components including a swipe-card gesture interface, a calendar and availability interface, real-time chat messaging, and a review and booking system. The availability management features allowed users to input their availability, behaving as a bitmap that could efficiently find openings in the schedule of students and tutors which informed our matching algorithm. The real-time chat system used Firebase Cloud Messaging to facilitate seamless communication between matched users. 
+                        <br><br>
+                        The application architecture emphasized clean code principles and scalability, with a well-structured repository pattern for data access and reactive programming using LiveData and ViewModel for UI state management. Implemented proper error handling and input validation to ensure a robust user experience.
+                        <br><br>
+                        The team engaged in agile development practices, including sprint planning, pair programming, and iterative feature deployment. Used Git for version control.
+                        <br><br>
+                        Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.
                     </p>
-                
-                
-  
-                
-            </div>
+                </div>
+            </section>
+        </div>
     </main>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" src="" alt="Enlarged view" style="display: none;">
+            <video id="lightbox-video" controls style="display: none;">
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
 
     <!-- Resume Modal -->
     <div id="resumeModal" class="modal">
@@ -451,43 +460,64 @@
         </div>
     </div>
 
-    <!-- Decorative Elements -->
-    <div class="vine-decoration vine-left"></div>
-    <div class="vine-decoration vine-right"></div>
-    <div class="flowers-bottom"></div>
-
     <script>
-        function showSection(sectionName) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.section');
-            sections.forEach(section => {
-                section.classList.remove('active');
+        // Smooth scrolling for navigation
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             });
+        });
+
+        // Lightbox functions
+        function openLightbox(src, type = 'image') {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const video = document.getElementById('lightbox-video');
             
-            // Show selected section
-            document.getElementById(sectionName).classList.add('active');
+            if (type === 'video') {
+                img.style.display = 'none';
+                video.style.display = 'block';
+                video.querySelector('source').src = src;
+                video.load();
+            } else {
+                video.style.display = 'none';
+                img.style.display = 'block';
+                img.src = src;
+            }
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
 
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            const video = document.getElementById('lightbox-video');
+            
+            lightbox.classList.remove('active');
+            video.pause();
+            document.body.style.overflow = 'auto';
+        }
+
+        // Resume modal functions
         function openResume() {
             document.getElementById('resumeModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeResume() {
             document.getElementById('resumeModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
         function downloadResume() {
-            // In a real implementation, this would download your actual PDF
             alert('In a real website, this would download your resume PDF file. Please upload your actual resume PDF and link it here!');
-            
-            // Example of how to trigger a PDF download:
-            // const link = document.createElement('a');
-            // link.href = 'path/to/your/resume.pdf';
-            // link.download = 'YourName_Resume.pdf';
-            // link.click();
         }
 
-        // Close modal when clicking outside
+        // Close modals when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('resumeModal');
             if (event.target === modal) {
@@ -495,17 +525,12 @@
             }
         }
 
-        // Add some interactive flower animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const flowers = document.querySelector('.flowers-bottom');
-            let isHovered = false;
-            
-            flowers.addEventListener('mouseenter', function() {
-                if (!isHovered) {
-                    this.style.animation = 'flowerSway 2s ease-in-out infinite';
-                    isHovered = true;
-                }
-            });
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeLightbox();
+                closeResume();
+            }
         });
     </script>
 </body>
