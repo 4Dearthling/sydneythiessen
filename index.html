@@ -334,13 +334,11 @@
 
     <main>
         
-            <div class="profile-photo">👋</div>
             <div class = "text-background">
             <h2>About Me</h2>
             <p class="intro-text">
-                I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on 
-                a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to analyzing audio files to classify and predict the progression of voice disorders in ALS patients.
-
+                I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
+                My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
                 <br><br>
                 My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
                 at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
@@ -350,32 +348,63 @@
 
             <h2>My Projects</h2>
 
+            <h3>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h3>
+                    <div class="image-gallery">
+                        <img src="img/Dysarthria_classifier/ID313_phonationI.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
+                        <img src="img/Dysarthria_classifier/ID329_phonationI.png" alt="Profile View" onclick="openLightbox(this.src)">
+                    </div>
+                    <p>
+                        Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking, with the opportunity for top-performing teams to present at IEEE ICASSP 2026. The challenge addresses the critical need for objective, noninvasive biomarkers to enable early diagnosis and monitoring of neurodegenerative diseases, particularly amyotrophic lateral sclerosis (ALS).
+                        
+                        Working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing*, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria).
+                        
+                        The second task focuses on predictive modeling to forecast disease progression by estimating future ALSFRS-R scale values based on historical patient data. This prediction challenge is strengthening my abilities in analyzing data collected over time from the same patients, building regression models to predict numerical severity scores, and understanding how speech impairment patterns evolve as the disease progresses.
+                        
+                        Through this ongoing work, I am gaining experience in biomedical signal analysis and transformer-based architectures for audio processing, learning to extract clinically meaningful acoustic features such as prosody, phonation quality, and articulation metrics from spectrogram representations. I am developing skills in data preprocessing and augmentation techniques specific to audio data, as well as hyperparameter optimization to maximize model performance.
+                        
+                        This challenge is enhancing my research and literature review skills as I examine the use of audio spectrogram transformers for dysarthria classification, evaluating how this state-of-the-art approach performs on phonation-based speech data rather than word-based speech, specifically sustained vowels (A, E, I, O, U) and rhythmic syllable sequences (TA, PA, KA). This interdisciplinary project bridges computer science, machine learning, and clinical neuroscience, integrating signal processing and health data analysis to develop tools that could aid in the early detection and monitoring of neurodegenerative diseases.
+                        </p>
+
+                        <h3>Tutle: A Tutor-Student Marketplace</h3>
+                        <p>in progress</p>
+
+                        <h3>4D Body Scanner for Telehealth</h3>
+                        <div class="video-container">
+                            <video controls>
+                                <source src="img/4D_body_scanner/cat_wave_trimmed.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="image-gallery">
+                            <img src="img/4D_body_scanner/full_design_v2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
+                            <img src="img/4D_body_scanner/human_constraints_diagram-1.png" alt="Profile View" onclick="openLightbox(this.src)">
+                            <img src="img/4D_body_scanner/setup_checkerboard.png" alt="Match Screen" onclick="openLightbox(this.src)">
+                        </div>
+                        <p>I collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation and reconstruction.
+                        During the development phase, I conducted a comprehensive feasibility analysis of two competing system architectures: a stationary multi-sensor array and a rotational scanning design. By examining human and practical constraints against the limitations of each system, we determined that the rotational approach was necessary to achieve our target frame rate while maintaining scan quality. This process deepened my understanding of system architecture design and the engineering trade-offs involved in design.
+                        The project required extensive work in system calibration and synchronization to ensure accurate data capture across multiple sensors as well as point cloud processing and registration for the merging of and creating on 3D + time datasets. The alignment algorithms that were utilized were Iterative Closest Point and Fast Point Feature Histograms with RANSAC. I developed skills in sensor calibration and hardware-software integration, particularly when prototyping with motorized tracks, stepper motors, and spinning LIDARs—components that informed our design decisions even though they didn't appear in the final implementation.
+                        This experience strengthened my abilities in data pipeline development, managing the flow from raw sensor input through processing stages to final output, as well as technical documentation to track our design iterations and performance benchmarks. The collaborative nature of the project enhanced my research communication skills and ability to integrate complementary technical expertise toward a unified goal.</p>
+
                     <h3>Mentor Match</h3>
-                    <p>Designed and developed <italic>Mentor Match</italic>, a tutor student matching application featuring a swipe-card interface for discovering tutors. Built with Kotlin in Android Studio following the MVVM architecture, and integrated with Firebase for backend functionality.
-                    <br><br>
-                    Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.                    
+                    <div class="image-gallery">
+                        <img src="img/MentorMatch/image-2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-3.png" alt="Profile View" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-4.png" alt="Match Screen" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image-6.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                        <img src="img/MentorMatch/image.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                    </div>
+                    <p> Led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. Built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture to ensure separation of concerns, maintainability, and testability. Integrated Firebase for backend functionality, including Firebase Authentication for secure user login, Cloud Firestore for real-time database management, and Firebase Storage for user profile media.
+                        Implemented custom UI components including the swipe-card gesture interface. Created an availability management features that allowed users to input their availability that behaved as a bitmap in the backend to find availability between students and tutors to use in our matching algorithm. Built a real-time chat system using Firebase Cloud Messaging to facilitate seamless communication between matched users. 
+                        The application architecture emphasized clean code principles and scalability, with a well-structured repository pattern for data access and reactive programming using LiveData and ViewModel for UI state management. Implemented proper error handling and input validation to ensure a robust user experience.
+                        The team engaged in agile development practices, including sprint planning, pair programming, and iterative feature deployment. Used Git for version control.
+                        Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.                 
                     
                     </p>
                 
                 
-                    <h3>Project Title 2</h3>
-                    <p>Description of your second project. Focus on the problem you solved, your approach, and what you learned from the experience. Include any collaboration or leadership aspects.</p>
-                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
-                    <p><strong>Skills Developed:</strong> Key learnings</p>
-                
-                
-                
-                    <h3>Project Title 3</h3>
-                    <p>Another significant project that showcases your abilities. This could be academic research, a capstone project, or independent work that demonstrates your readiness for graduate school.</p>
-                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
-                    <p><strong>Recognition:</strong> Awards, publications, etc.</p>
-                
-                
-                
-                    <h3>Project Title 4</h3>
-                    <p>Additional project that rounds out your portfolio. Consider including diverse types of work to show your range of interests and capabilities.</p>
-                    <p><strong>Technologies:</strong> List relevant tools/languages</p>
-                    <p><strong>Duration:</strong> Timeline of the project</p>
+  
                 
             </div>
     </main>
