@@ -12,13 +12,12 @@ import java.util.stream.Collectors;
 public class Lab2Main {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.print("CSV filename: ");
         String filename = scanner.nextLine();
         PropertyAssessments propertyAssessments = new PropertyAssessments(filename);
 
-        List<PropertyAssessment> allAssessmentsList = propertyAssessments.getAllAssessments();
-        PropertyAssessments allAssessments = propertyAssessments.AllAssessments(allAssessmentsList);
+        PropertyAssessments allAssessments = propertyAssessments.AllAssessments();
 
         System.out.println("Descriptive statistics of all property assessments");
         System.out.println(printStats(allAssessments));
@@ -28,14 +27,10 @@ public class Lab2Main {
         try {
             accountNumber = String.valueOf(Integer.parseInt(accountNumber));
         } catch (NumberFormatException e) {
-            System.out.println("Error: invalid account number...");
-            System.exit(1);
+            throw new NumberFormatException("Error: invalid account number...");
         }
         PropertyAssessment assessment = propertyAssessments.getAssessment(accountNumber);
-        if (assessment == null) {
-            System.out.println("Property is not found");
-            System.exit(1);
-        }
+
         System.out.println("Account number = " + accountNumber +
                 "\nAddress = " + assessment.getHouse().getAddress() +
                 "\nAssessed value = $" + moneyFormat(assessment.getAssessedValue()) +
@@ -46,7 +41,7 @@ public class Lab2Main {
         System.out.print("\nFind statistics by neighbourhood: ");
         String neighbourhood = scanner.nextLine();
         PropertyAssessments neighbourhoodAssessments = propertyAssessments.NeighbourhoodAssessments(neighbourhood.toUpperCase());
-        if (neighbourhoodAssessments.getAllAssessments().isEmpty()){
+        if (neighbourhoodAssessments.AllAssessments().size() == 0){
             System.out.println("Neighbourhood is not found");
             System.exit(1);
         }

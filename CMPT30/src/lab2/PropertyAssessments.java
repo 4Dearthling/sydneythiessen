@@ -11,9 +11,7 @@ import java.util.stream.Collectors;
 public class PropertyAssessments {
     private HashMap<Integer, PropertyAssessment> assessments;
     private static final String RED = "\u001B[31m";
-    private static int count = 0;
-
-    public PropertyAssessments(String filename){
+    public PropertyAssessments(String filename) throws IOException {
         assessments = new HashMap<>();
         int index = 0;
         // Try-with-resources statement to create a stream to read the CSV file. Automatically closes the resource.
@@ -29,10 +27,23 @@ public class PropertyAssessments {
 
             }
         } catch (IOException e) {
-            System.out.println(RED + "Error: can't open file " + filename);
-            System.exit(1);
+//            System.out.println(RED + "Error: can't open file " + filename);
+            throw new IOException(RED + "Error: can't open file " + filename);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        PropertyAssessments that = (PropertyAssessments) o;
+        return Objects.equals(assessments, that.assessments);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(assessments);
+    }
+
     public PropertyAssessments(List<PropertyAssessment> propertyAssessments) {
         this.assessments = propertyAssessments.stream().collect(Collectors.toMap(PropertyAssessment::getAccountNumber, assessment -> assessment,(existing, replacement) -> existing,  // Handle duplicates
                 HashMap::new));
@@ -78,7 +89,10 @@ public class PropertyAssessments {
         return assessments.values().stream().collect(Collectors.summarizingDouble(PropertyAssessment::getAssessedValue));
     }
 
-    public void addAssessment(String[] rowData) {
+    public void addAssessment(String[] rowData) throws IOException {
+        if (rowData[0].isBlank()) {
+            throw new IOException("Every entry needs an account number");
+        }
         House house = new House(rowData[1].isBlank() ? "" : rowData[1], rowData[2].isBlank() ? "" : rowData[2],
                 rowData[3].isBlank() ? "" : rowData[3], rowData[4].isBlank() ? "" : rowData[4]);
         Neighborhood neighborhood = new Neighborhood(rowData[5].isBlank() ? -1 : Integer.parseInt(rowData[5]),
@@ -101,26 +115,23 @@ public class PropertyAssessments {
         Assessments assessmentClasses = new Assessments(assessmentPercentages, assessmentTypes);
 
         PropertyAssessment propertyAssessment = new PropertyAssessment(
-                rowData[0].isBlank() ? -1 : Integer.parseInt(rowData[0]), house, neighborhood, rowData[8].isBlank() ? -1 : Float.parseFloat(rowData[8]), geolocation, assessmentClasses);
+                Integer.parseInt(rowData[0]), house, neighborhood, rowData[8].isBlank() ? -1 : Float.parseFloat(rowData[8]), geolocation, assessmentClasses);
 
         assessments.put(Integer.parseInt(rowData[0]), propertyAssessment);
     }
 
-    public int getResidentialCount() {
-        return count;
-    }
     public PropertyAssessment getAssessment(String accountNumber) {
-
         int acctNumber = 0;
         try {
             acctNumber = Integer.parseInt(accountNumber);
         } catch (NumberFormatException e) {
-            System.out.println("Error: invalid account number...");
-            System.exit(1);
+            throw new NumberFormatException("Error: invalid account number...");
+        }
+        if (acctNumber < 0){
+            throw new IllegalArgumentException("Account number cannot be negative");
         }
         if (!this.containsAssessment(acctNumber)) {
-            System.out.println("Property is not found");
-            System.exit(1);
+            throw new NoSuchElementException("Property is not found");
         }
         return assessments.get(acctNumber);
     }
@@ -145,9 +156,9 @@ public class PropertyAssessments {
 //        return neighbourhoodAssessments;
 //    }
 
-    public List<PropertyAssessment> getAllAssessments() {
-        return new ArrayList<>(assessments.values());
-    }
+//    public List<PropertyAssessment> getAllAssessments() {
+//        return new ArrayList<>(assessments.values());
+//    }
 
     public PropertyAssessments NeighbourhoodAssessments(String neighbourhood) {
         List<PropertyAssessment> neighbourhoodAssessments = assessments.values().stream().filter(a -> neighbourhood.equals
@@ -156,8 +167,9 @@ public class PropertyAssessments {
 
     }
 
-    public PropertyAssessments AllAssessments(List<PropertyAssessment> allAssessments) {
-        return new PropertyAssessments(allAssessments);
+    public PropertyAssessments AllAssessments() {
+
+        return new PropertyAssessments(new ArrayList<>(assessments.values()));
     }
 
     public PropertyAssessments getAssessmentsByAssessmentClass(String assessmentClass) {
@@ -173,5 +185,7 @@ public class PropertyAssessments {
                 }).collect(Collectors.toList());
                 return new PropertyAssessments(assessmentClassAssessments);
     }
+
+
 
 }

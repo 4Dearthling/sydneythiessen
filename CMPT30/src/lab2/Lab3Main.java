@@ -1,16 +1,16 @@
 package lab2;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Lab3Main {
     private static final Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.out.print("CSV filename: ");
         String filename = scanner.nextLine();
         PropertyAssessments propertyAssessments = new PropertyAssessments(filename);
-        System.out.println(propertyAssessments.getResidentialCount());
 
         System.out.print("Please enter a neighbourhood name: ");
         String neighbourhoodName = scanner.nextLine();
