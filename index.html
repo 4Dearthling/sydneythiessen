@@ -1,532 +1,850 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Graduate School Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            text-indent: 40px;
-        }
 
-        body {
-            font-family: 'Georgia', serif;
-            background: linear-gradient(135deg, #faf7f2 0%, #f0ead6 100%);
-            color: #2d4a3e;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
 
-        /* Main Content */
-        main {
-            margin-top: 50px;
-            padding: 2rem;
-            position: relative;
-            z-index: 10;
-        }
+<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>Your Name - Graduate School Portfolio</title> <style> * { margin: 0; padding: 0; box-sizing: border
 
-        .content-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .text-background {
-            background-color: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(0,0,0,0.2);
-            padding: 10px;
-            border-radius: 15px;
-            display: inline-block;
-        }
-
-        h1 {
-            text-align: left;
-            color: #2d4a3e;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
-            font-size: 2.5rem;
-            font-weight: 300;
-        }
-
-        h2 {
-            color: #4a7c59;
-            margin-bottom: 1.5rem;
-            margin-top: 2rem;
-            font-size: 1.8rem;
-            text-align: left;
-        }
-
-        h3 {
-            color: #6b9d6b;
-            margin-bottom: 1rem;
-            margin-top: 2rem;
-            font-size: 1.4rem;
-            text-align: left;
-        }
-
-        .intro-text {
-            text-align: left;
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 3rem;
-            color: #4a5d4a;
-        }
-
-        /* Header with title and button */
-        .page-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .page-header h1 {
-            margin: 0;
-        }
-
-        /* Project Sections */
-        .project-section {
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid #e8f4e8;
-        }
-
-        .project-section:last-child {
-            border-bottom: none;
-        }
-
-        .project-section p {
-            line-height: 1.8;
-            color: #4a5d4a;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Image Gallery Styles */
-        .image-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .image-gallery img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid #e8f4e8;
-        }
-
-        .image-gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
-            border-color: #6b9d6b;
-        }
-
-        /* Video Container Styles */
-        .video-container {
-            margin: 1.5rem 0;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 2px solid #e8f4e8;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .video-container:hover {
-            box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
-            border-color: #6b9d6b;
-        }
-
-        .video-container video {
-            width: 100%;
-            max-height: 400px;
-            display: block;
-        }
-
-        /* Lightbox Styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            z-index: 3000;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lightbox-content {
-            max-width: 90%;
-            max-height: 90%;
-            position: relative;
-        }
-
-        .lightbox-content img,
-        .lightbox-content video {
-            max-width: 100%;
-            max-height: 90vh;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 2.5rem;
-            cursor: pointer;
-            background: rgba(0, 0, 0, 0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(107, 157, 107, 0.8);
-            transform: rotate(90deg);
-        }
-
-        /* Resume Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-        }
-
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            max-width: 90%;
-            max-height: 90%;
-            overflow: auto;
-        }
-
-        .close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            font-size: 2rem;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .download-btn {
-            background: linear-gradient(45deg, #6b9d6b, #4a7c59);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            white-space: nowrap;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(107, 157, 107, 0.4);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
+    pasted
+    
+    so this is the html file from my website CV, I would like it so my images aren't just one after another. I would like them to be under the respective project and smaller. if the user presses on it, a popup wiht the image or video will appear to present it.
+    
+    
+    Strategized website portfolio redesign with responsive image gallery.
+    
+    
+    
+    
+    I'll help you fix the image and video display on your portfolio website. I'll add proper styling for image galleries, make them smaller thumbnails, and create a working lightbox popup for when users click on them.
+    
+    Portfolio Website with Image Lightbox
+    Interactive artifact 
+    I've updated your portfolio website with the following improvements:
+    
+    Key Changes:
+    Organized Layout: Restructured the page to show all content in a single scrolling format with "About Me" and "Projects" sections
+    Image Galleries:
+    Images now display as smaller thumbnails (200px height) in a responsive grid
+    Automatically adjust to screen size
+    Hover effect with subtle zoom and shadow
+    Lightbox Popup:
+    Click any image or video to view it full-screen
+    Close button in the top-right corner
+    Click outside the image/video or press Escape to close
+    Dark overlay background
+    Works for both images and videos
+    Better Organization:
+    Each project is in its own section
+    Clear visual separation between projects
+    Proper spacing and borders
+    Responsive Design:
+    Adapts to mobile devices
+    Smaller thumbnails on mobile (150px)
+    Video Handling: The video container is also clickable and opens in the lightbox with controls
+    The images and videos are now properly organized under each project description, making your portfolio much easier to navigate!
+    
+    please left align all titles. 
+    
+    please remove the header at the top as it seems unnecessary and include a 'Download PDF' button beside but right aligned the about me title and remove the swaying vines and flowers
+    
+    
+    Strategized webpage modifications to enhance user experience.
+    
+    
+    
+    Strategized layout modifications and design refinements.
+    
+    
+    Plotted header design with "About Me" and PDF button.
+    
+    
+    Strategized button styling and decorative element removal.
+    
+    
+    Strategized responsive section modifications for design update.
+    
+    
+    Strategized HTML modifications to align with user's design request.
+    
+    
+    Strategized removing decorative HTML elements from page.
+    
+    
+    Strategized HTML modifications to meet design requirements.
+    
+    
+    Strategized HTML element removal and modification approach.
+    
+    
+    Strategized code modifications for resume page refinement.
+    
+    
+    Streamlined design by removing unnecessary elements and modal.
+    
+    
+    Plotted CSS modifications to streamline design elements.
+    
+    
+    Pondered preserving download button styling details.
+    
+    Perfect! I've made all the requested changes:
+    
+    Updates:
+    Left-aligned all titles - All h1, h2, and h3 headings are now left-aligned
+    Removed the navigation header - The top navigation bar has been completely removed
+    Added Download PDF button - The button is now positioned next to the "About Me" title, right-aligned in a flex container
+    Removed decorative elements - All the swaying vines and flowers have been removed for a cleaner look
+    The page now has a much cleaner, more professional appearance with better focus on your content. The download button is easily accessible at the top of the page next to your main heading.
+    
+    could you put each project in separate pages and then make them available on the front pages under projects where it provides the name a peek at the project where the user will ahve to click on it to opne it up on a new page
+    
+    
+    Architected multi-page project showcase with clickable previews.
+    
+    
+    
+    
+    
+    
+    Perfect! I've restructured your portfolio into a multi-page layout. Here's what I've created:
+    
+    Main Page Features:
+    About Me section with your bio and Download PDF button
+    Projects section with preview cards for each project
+    Projects are organized into "In Progress" and "Completed" sections
+    Each preview card shows:
+    Status badge (In Progress/Completed)
+    Project title
+    Preview image (when available)
+    Brief excerpt from the project description
+    "Read more" link with hover animation
+    Individual Project Pages:
+    Clicking any preview card navigates to that project's dedicated page
+    Each project page includes:
+    Back button to return home
+    Full project description
+    All images and videos specific to that project
+    Status badge
+    Navigation:
+    Smooth transitions between pages with fade-in animations
+    Scroll to top when navigating between pages
+    Hover effects on preview cards to indicate they're clickable
+    Images still open in lightbox when clicked
+    The layout is clean and professional, making it easy for visitors to browse your projects and dive deeper into the ones that interest them!
+    
+    please include a title sectino that indtroduces me, it says hi my name is sydney. also include a section under about me that is education. I have a degree in mechanical engineering completed from 2010-2016 and a degree in computer science completed from 2023-current, anticipated completion in december 2025
+    
+    
+    Strategized profile update with personal and educational details.
+    
+    
+    
+    Strategized placement of education section in document.
+    
+    Perfect! I've added:
+    
+    Introduction Section - A welcoming "Hi, my name is Sydney." at the very top in a larger font
+    Education Section - Added below the About Me description with both degrees:
+    Computer Science (2023 - Present) from MacEwan University with your 3.85 GPA and anticipated December 2025 completion
+    Mechanical Engineering (2010 - 2016) from University of Alberta
+    The education section is cleanly formatted with clear headings, university names, dates, and relevant details. The degrees are listed in reverse chronological order (most recent first) which is the standard format for academic portfolios.
+    
+    include this under my computer science degree: Experience with Python, C, C#.net, SQL and Azure Data Studio
+    * Built a fully functional game in Python
+    * Courses in Machine Learning, Data Mining, Artificial Intelligence, Robotics, Software Engineering, Databases, Data Structures, Object-Oriented Programming, UX/UI Design
+    * Mathematical Courses in Calculus I, II, & III, Linear Algebra I & II, Graph Theory, Set Theory, and Logic
+    * Statistics Courses in Probability and Regression
+    and this under my mechanical engineering degree:
+    * Built intuitive foundation of Mechanics and 3D Modelling using SolidWorks
+    * Coursework in Thermodynamics, Heat Transfer, HVAC Systems, Mechanical Design, Fluid Mechanics, Electricity and Magnetism, Classical Mechanics, Quantum Mechanics
+    
+    
+    Strategized updating education section with detailed coursework.
+    
+    Perfect! I've added the detailed coursework and experience under each degree:
+    
+    Computer Science degree now includes:
+    
+    Your programming language experience (Python, C, C#.net, SQL, Azure Data Studio)
+    Python game project
+    CS coursework (ML, AI, Robotics, Software Engineering, etc.)
+    Mathematical coursework (Calculus, Linear Algebra, Graph Theory, etc.)
+    Statistics coursework (Probability and Regression)
+    Mechanical Engineering degree now includes:
+    
+    SolidWorks and mechanics foundation
+    Engineering coursework (Thermodynamics, Fluid Mechanics, Heat Transfer, etc.)
+    The bullet points are cleanly formatted and easy to read, giving a comprehensive view of your technical background across both degrees!
+    
+    
+    
+    
+    
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Your Name - Graduate School Portfolio</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            body {
+                font-family: 'Georgia', serif;
+                background: linear-gradient(135deg, #faf7f2 0%, #f0ead6 100%);
+                color: #2d4a3e;
+                min-height: 100vh;
+                position: relative;
+                overflow-x: hidden;
+            }
+    
+            /* Main Content */
             main {
-                margin-top: 30px;
-                padding: 1rem;
+                margin-top: 50px;
+                padding: 2rem;
+                position: relative;
+                z-index: 10;
             }
-            
+    
             .content-container {
-                padding: 2rem 1rem;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 3rem 2rem;
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 20px;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+                backdrop-filter: blur(10px);
             }
-
-            .image-gallery {
-                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    
+            /* Page management */
+            .page {
+                display: none;
             }
-
-            .image-gallery img {
-                height: 150px;
+    
+            .page.active {
+                display: block;
+                animation: fadeIn 0.5s ease-out;
             }
-
+    
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+    
+            h1 {
+                text-align: left;
+                color: #2d4a3e;
+                margin-bottom: 1.5rem;
+                margin-top: 2rem;
+                font-size: 2.5rem;
+                font-weight: 300;
+            }
+    
+            h2 {
+                color: #4a7c59;
+                margin-bottom: 1.5rem;
+                margin-top: 2rem;
+                font-size: 1.8rem;
+                text-align: left;
+            }
+    
+            h3 {
+                color: #6b9d6b;
+                margin-bottom: 1rem;
+                margin-top: 2rem;
+                font-size: 1.4rem;
+                text-align: left;
+            }
+    
+            .intro-text {
+                text-align: left;
+                font-size: 1.1rem;
+                line-height: 1.8;
+                margin-bottom: 3rem;
+                color: #4a5d4a;
+            }
+    
+            /* Header with title and button */
             .page-header {
-                flex-direction: column;
-                align-items: flex-start;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 2rem;
+                flex-wrap: wrap;
+                gap: 1rem;
             }
-        }
-    </style>
-</head>
-<body>
-    <main>
-        <div class="content-container">
-            <section id="about">
-                <div class="page-header">
-                    <h1>Hi! My name is Sydney Thiessen.</h1>
-                    <p class="intro-text">Welcome to my page, please take a look at the project I have been working on and download my resume.</p>
-                    <button class="download-btn" onclick="downloadResume()">Download Resume</button>
+    
+            .page-header h1 {
+                margin: 0;
+            }
+    
+            .download-btn {
+                background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+                color: white;
+                padding: 0.75rem 1.5rem;
+                border: none;
+                border-radius: 25px;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                white-space: nowrap;
+            }
+    
+            .download-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(107, 157, 107, 0.4);
+            }
+    
+            /* Back button */
+            .back-btn {
+                background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+                color: white;
+                padding: 0.5rem 1.5rem;
+                border: none;
+                border-radius: 25px;
+                font-size: 0.9rem;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+                margin-bottom: 2rem;
+            }
+    
+            .back-btn:hover {
+                transform: translateX(-3px);
+                box-shadow: 0 5px 15px rgba(107, 157, 107, 0.4);
+            }
+    
+            /* Project Preview Cards */
+            .projects-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+    
+            .project-preview-card {
+                background: linear-gradient(135deg, #f8fdf8, #eef7ee);
+                padding: 2rem;
+                border-radius: 15px;
+                border: 2px solid #e8f4e8;
+                transition: all 0.3s ease;
+                cursor: pointer;
+                position: relative;
+                overflow: hidden;
+            }
+    
+            .project-preview-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 15px 35px rgba(107, 157, 107, 0.2);
+                border-color: #6b9d6b;
+            }
+    
+            .project-preview-card::before {
+                content: '';
+                position: absolute;
+                top: -2px;
+                left: -2px;
+                right: -2px;
+                height: 4px;
+                background: linear-gradient(45deg, #6b9d6b, #4a7c59);
+                border-radius: 15px 15px 0 0;
+            }
+    
+            .project-preview-card h3 {
+                margin-top: 0;
+                color: #4a7c59;
+                font-size: 1.3rem;
+            }
+    
+            .project-preview-card .preview-text {
+                color: #4a5d4a;
+                line-height: 1.6;
+                margin-bottom: 1rem;
+            }
+    
+            .project-preview-card .preview-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+            }
+    
+            .project-preview-card .status-badge {
+                display: inline-block;
+                padding: 0.3rem 0.8rem;
+                border-radius: 15px;
+                font-size: 0.85rem;
+                font-weight: 500;
+                margin-bottom: 1rem;
+            }
+    
+            .status-in-progress {
+                background: #fff3cd;
+                color: #856404;
+            }
+    
+            .status-completed {
+                background: #d4edda;
+                color: #155724;
+            }
+    
+            .read-more {
+                color: #4a7c59;
+                font-weight: 600;
+                font-size: 0.95rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+    
+            .read-more::after {
+                content: '→';
+                transition: transform 0.3s ease;
+            }
+    
+            .project-preview-card:hover .read-more::after {
+                transform: translateX(5px);
+            }
+    
+            /* Full Project Pages */
+            .project-content p {
+                line-height: 1.8;
+                color: #4a5d4a;
+                margin-bottom: 1.5rem;
+            }
+    
+            /* Image Gallery Styles */
+            .image-gallery {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin: 1.5rem 0;
+            }
+    
+            .image-gallery img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                border: 2px solid #e8f4e8;
+            }
+    
+            .image-gallery img:hover {
+                transform: scale(1.05);
+                box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
+                border-color: #6b9d6b;
+            }
+    
+            /* Video Container Styles */
+            .video-container {
+                margin: 1.5rem 0;
+                border-radius: 10px;
+                overflow: hidden;
+                border: 2px solid #e8f4e8;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+    
+            .video-container:hover {
+                box-shadow: 0 8px 20px rgba(107, 157, 107, 0.3);
+                border-color: #6b9d6b;
+            }
+    
+            .video-container video {
+                width: 100%;
+                max-height: 400px;
+                display: block;
+            }
+    
+            /* Lightbox Styles */
+            .lightbox {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.9);
+                z-index: 3000;
+                justify-content: center;
+                align-items: center;
+            }
+    
+            .lightbox.active {
+                display: flex;
+            }
+    
+            .lightbox-content {
+                max-width: 90%;
+                max-height: 90%;
+                position: relative;
+            }
+    
+            .lightbox-content img,
+            .lightbox-content video {
+                max-width: 100%;
+                max-height: 90vh;
+                border-radius: 10px;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+    
+            .lightbox-close {
+                position: absolute;
+                top: -40px;
+                right: 0;
+                color: white;
+                font-size: 2.5rem;
+                cursor: pointer;
+                background: rgba(0, 0, 0, 0.5);
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.3s ease;
+            }
+    
+            .lightbox-close:hover {
+                background: rgba(107, 157, 107, 0.8);
+                transform: rotate(90deg);
+            }
+    
+            /* Responsive */
+            @media (max-width: 768px) {
+                main {
+                    margin-top: 30px;
+                    padding: 1rem;
+                }
+                
+                .content-container {
+                    padding: 2rem 1rem;
+                }
+    
+                .image-gallery {
+                    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                }
+    
+                .image-gallery img {
+                    height: 150px;
+                }
+    
+                .page-header {
+                    flex-direction: column;
+                    align-items: flex-start;
+                }
+    
+                .projects-grid {
+                    grid-template-columns: 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="content-container">
+                <!-- Main Page -->
+                <div id="main-page" class="page active">
+                    <section id="intro">
+                        <h1 style="font-size: 3rem; margin-bottom: 0.5rem;">Hi, my name is Sydney.</h1>
+                    </section>
+    
+                    <section id="about">
+                        <div class="page-header">
+                            <h1>About Me</h1>
+                            <button class="download-btn" onclick="downloadResume()">📥 Download PDF</button>
+                        </div>
+                        <p class="intro-text">
+                            I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.85 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
+                            My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
+                            <br><br>
+                            My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
+                            at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
+                        </p>
+    
+                        <h2>Education</h2>
+                        <div style="margin-bottom: 2rem;">
+                            <div style="margin-bottom: 2rem;">
+                                <h3 style="margin-top: 0; color: #4a7c59;">Bachelor of Science in Computer Science</h3>
+                                <p style="color: #6b9d6b; font-weight: 500; margin-bottom: 0.5rem;">MacEwan University | 2023 - Present</p>
+                                <p style="color: #4a5d4a; line-height: 1.6; margin-bottom: 0.5rem;">Anticipated completion: December 2025 | GPA: 3.85</p>
+                                <ul style="color: #4a5d4a; line-height: 1.8; margin-left: 1.5rem;">
+                                    <li>Experience with Python, C, C#.net, SQL and Azure Data Studio</li>
+                                    <li>Built a fully functional game in Python</li>
+                                    <li>Courses in Machine Learning, Data Mining, Artificial Intelligence, Robotics, Software Engineering, Databases, Data Structures, Object-Oriented Programming, UX/UI Design</li>
+                                    <li>Mathematical Courses in Calculus I, II, & III, Linear Algebra I & II, Graph Theory, Set Theory, and Logic</li>
+                                    <li>Statistics Courses in Probability and Regression</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h3 style="margin-top: 0; color: #4a7c59;">Bachelor of Science in Mechanical Engineering</h3>
+                                <p style="color: #6b9d6b; font-weight: 500; margin-bottom: 0.5rem;">University of Alberta | 2010 - 2016</p>
+                                <ul style="color: #4a5d4a; line-height: 1.8; margin-left: 1.5rem;">
+                                    <li>Built intuitive foundation of Mechanics and 3D Modelling using SolidWorks</li>
+                                    <li>Coursework in Thermodynamics, Heat Transfer, HVAC Systems, Mechanical Design, Fluid Mechanics, Electricity and Magnetism, Classical Mechanics, Quantum Mechanics</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+    
+                    <section id="projects-preview">
+                        <h1>My Projects</h1>
+                        
+                        <h2><em>In Progress</em></h2>
+                        <div class="projects-grid">
+                            <div class="project-preview-card" onclick="showProject('als-project')">
+                                <span class="status-badge status-in-progress">In Progress</span>
+                                <h3>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h3>
+                                <img src="img/Dysarthria_classifier/ID319_phonationU.png" alt="ALS Project Preview" class="preview-image">
+                                <p class="preview-text">
+                                    Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking. Developing machine learning models for multi-class classification to categorize dysarthria severity and predictive modeling to forecast disease progression...
+                                </p>
+                                <span class="read-more">Read more</span>
+                            </div>
+    
+                            <div class="project-preview-card" onclick="showProject('tutle-project')">
+                                <span class="status-badge status-in-progress">In Progress</span>
+                                <h3>Tutle: A Tutor-Student Marketplace</h3>
+                                <p class="preview-text">
+                                    Co-leading a team of 7 developers to build a comprehensive commercial tutoring mobile application that connects students with qualified tutors through a secure, feature-rich platform. Built with React Native to provide a seamless cross-platform experience on both iOS and Android devices...
+                                </p>
+                                <span class="read-more">Read more</span>
+                            </div>
+                        </div>
+    
+                        <h2><em>Completed</em></h2>
+                        <div class="projects-grid">
+                            <div class="project-preview-card" onclick="showProject('scanner-project')">
+                                <span class="status-badge status-completed">Completed</span>
+                                <h3>4D Body Scanning for Remote Health Monitoring</h3>
+                                <img src="img/4D_body_scanner/full_design_v2.png" alt="4D Scanner Preview" class="preview-image">
+                                <p class="preview-text">
+                                    Collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation...
+                                </p>
+                                <span class="read-more">Read more</span>
+                            </div>
+    
+                            <div class="project-preview-card" onclick="showProject('mentor-match-project')">
+                                <span class="status-badge status-completed">Completed</span>
+                                <h3>Mentor Match</h3>
+                                <img src="img/MentorMatch/image-2.png" alt="Mentor Match Preview" class="preview-image">
+                                <p class="preview-text">
+                                    Co-led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. Built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture...
+                                </p>
+                                <span class="read-more">Read more</span>
+                            </div>
+                        </div>
+                    </section>
                 </div>
-                <h1>About Me</h1>
-                <p class="intro-text">
-                    I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.87 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
-                    My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
-                    <br><br>
-                    My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and research to look 
-                    at the brain in a novel way, inspiring the next generation of biotechnology to put the well-being of the human at its frontier.                 
-                </p>
-            </section>
-
-            <section id="projects">
-                <h1>My Projects</h1>
-                <h2><em>In Progress</em></h2>
-
-                <div class="project-section">
-                    <h3>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h3>
-                    
-
-                    
-                    <p>
-                        Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking, with the opportunity for top-performing teams to present at IEEE ICASSP 2026. The challenge addresses the critical need for objective, noninvasive biomarkers to enable early diagnosis and monitoring of neurodegenerative diseases, particularly amyotrophic lateral sclerosis (ALS).
-                        <br>
-                        I am working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria). The second task focuses on predictive modeling to forecast disease progression by estimating future ALSFRS-R scale values based on historical patient data. This prediction challenge is strengthening my abilities in analyzing data collected over time from the same patients, building regression models to predict numerical severity scores, and understanding how speech impairment patterns evolve as the disease progresses.
-                        <br>
-                        Through this ongoing work, I am gaining experience in biomedical signal analysis and transformer-based architectures for audio processing, learning to extract clinically meaningful acoustic features such as prosody, phonation quality, and articulation metrics from spectrogram representations. I am developing skills in data preprocessing and augmentation techniques specific to audio data, as well as hyperparameter optimization to maximize model performance. This challenge is enhancing my research and literature review skills as I examine the use of audio spectrogram transformers for dysarthria classification, evaluating how this state-of-the-art approach performs on phonation-based speech data rather than word-based speech, specifically sustained vowels (A, E, I, O, U) and rhythmic syllable sequences (TA, PA, KA). This interdisciplinary project bridges computer science, machine learning, and clinical neuroscience, integrating signal processing and health data analysis to develop tools that could aid in the early detection and monitoring of neurodegenerative diseases.
-                    </p>
-                    <div class="image-gallery">
-                        <img src="img/Dysarthria_classifier/ID319_phonationU.png" alt="Phonation Analysis" onclick="openLightbox(this.src)">
-                        <img src="img/Dysarthria_classifier/ID333_rhythmTA.png" alt="Rhythm Analysis" onclick="openLightbox(this.src)">
+    
+                <!-- ALS Project Page -->
+                <div id="als-project" class="page">
+                    <button class="back-btn" onclick="showPage('main-page')">← Back to Home</button>
+                    <div class="project-content">
+                        <span class="status-badge status-in-progress">In Progress</span>
+                        <h1>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h1>
+                        
+                        <div class="image-gallery">
+                            <img src="img/Dysarthria_classifier/ID319_phonationU.png" alt="Phonation Analysis" onclick="openLightbox(this.src)">
+                            <img src="img/Dysarthria_classifier/ID333_rhythmTA.png" alt="Rhythm Analysis" onclick="openLightbox(this.src)">
+                        </div>
+                        
+                        <p>
+                            Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking, with the opportunity for top-performing teams to present at IEEE ICASSP 2026. The challenge addresses the critical need for objective, noninvasive biomarkers to enable early diagnosis and monitoring of neurodegenerative diseases, particularly amyotrophic lateral sclerosis (ALS).
+                            <br><br>
+                            Working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria).
+                            <br><br>
+                            The second task focuses on predictive modeling to forecast disease progression by estimating future ALSFRS-R scale values based on historical patient data. This prediction challenge is strengthening my abilities in analyzing data collected over time from the same patients, building regression models to predict numerical severity scores, and understanding how speech impairment patterns evolve as the disease progresses.
+                            <br><br>
+                            Through this ongoing work, I am gaining experience in biomedical signal analysis and transformer-based architectures for audio processing, learning to extract clinically meaningful acoustic features such as prosody, phonation quality, and articulation metrics from spectrogram representations. I am developing skills in data preprocessing and augmentation techniques specific to audio data, as well as hyperparameter optimization to maximize model performance.
+                            <br><br>
+                            This challenge is enhancing my research and literature review skills as I examine the use of audio spectrogram transformers for dysarthria classification, evaluating how this state-of-the-art approach performs on phonation-based speech data rather than word-based speech, specifically sustained vowels (A, E, I, O, U) and rhythmic syllable sequences (TA, PA, KA). This interdisciplinary project bridges computer science, machine learning, and clinical neuroscience, integrating signal processing and health data analysis to develop tools that could aid in the early detection and monitoring of neurodegenerative diseases.
+                        </p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h3>Tutle: A Tutor-Student Marketplace</h3>
-                    
-                    <p>
-                        Co-leading a team of 7 developers to build a comprehensive commercial tutoring mobile application that connects students with qualified tutors through a secure, feature-rich platform. The application addresses both sides of the tutoring marketplace: empowering tutors with professional practice management tools while providing students with an intuitive interface for discovering and engaging with quality educators. It is built with React Native to provide a seamless cross-platform experience on both iOS and Android devices, leveraging a single codebase for efficient development and consistent user experience. The backend infrastructure utilizes PostgreSQL for robust relational data management, handling complex relationships between users, sessions, payments, and reviews.
-                        <br>
-                        For tutors, the application provides a comprehensive session management dashboard for tracking student progress, scheduling, and earnings, along with a custom booking platform that allows them to set availability, pricing, and subject specialties. The system includes automated session reminders, calendar integration, and performance analytics to help tutors monitor student engagement and optimize their teaching practice. For students, the platform offers advanced tutor discovery with filtering capabilities by subject, location, price range, and availability. Students have access to their own session management interface for organizing upcoming appointments, tracking completed sessions, and managing their tutoring schedule. The platform includes an innovative Tamagotchi-style gamification feature that motivates continued engagement by rewarding students with points for booking sessions, attending their tutoring appointments, and leaving reviews. These earned points can be used to care for and interact with their virtual companion, creating a playful incentive system that encourages consistent participation in their educational journey. Students can also access their complete session history, visualize their progress over time, and utilize an integrated review and rating system to inform future booking decisions.
-                        <br>
-                        A key feature of the platform is the real-time map integration that allows users to securely share their location and find each other for in-person tutoring sessions. This feature prioritizes user privacy by only sharing location data during active session windows and implementing proximity-based meeting coordination to ensure safe and convenient meetups. Safety and trust are foundational to the platform. All tutors must submit vulnerable sector checks before being approved to offer services, ensuring student safety for in-person sessions. The application implements secure payment processing through Stripe, with payments processed immediately upon session booking to protect both parties and streamline the transaction flow.
-                        <br>
-                        The project architecture emphasizes scalability and maintainability, leveraging Supabase as the backend-as-a-service platform to manage database operations, authentication, and real-time data synchronization. The implementation utilizes Supabase's client libraries for efficient database queries and real-time subscriptions for live booking updates and messaging features. The system implements secure authentication and authorization protocols to protect sensitive user data and payment information. Integrating AI-powered development assistants into the workflow to optimize code quality, debug efficiently, and explore alternative architectural approaches has enhanced development velocity and code reliability.
-                        <br>
-                        As co-lead, I am responsible for UI and UX design decisions, technical architecture decisions, sprint planning and task delegation, code review processes, and ensuring adherence to best practices in mobile development. This project is developing my skills in React Native mobile development and cross-platform optimization, team leadership and project management, PostgreSQL database schema design, backend integration with Supabase, payment gateway integration with the Stripe API, real-time location services and mapping APIs, security best practices and user data protection, AI-assisted development workflows, stakeholder communication and product planning.
-                    </p>
-                </div>
-
-                <h2><em>Completed</em></h2>
-
-                <div class="project-section">
-                    <h3>4D Body Scanning for Remote Health Monitoring</h3>
-                    
-
-                    
-                    <p>
-                        I collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation and reconstruction.
-                        <br>
-                        During the development phase, I conducted a comprehensive feasibility analysis of two competing system architectures: a stationary multi-sensor array and a rotational scanning design. By examining human and practical constraints against the limitations of each system, we determined that the stationary multi-sensor approach was necessary to achieve our target frame rate while maintaining scan quality. This process deepened my understanding of system architecture design and the engineering trade-offs involved in design. The project required extensive work in system calibration and synchronization to ensure accurate data capture across multiple sensors as well as point cloud processing and registration for the merging of and creating on 3D + time datasets. The alignment algorithms that were utilized were Iterative Closest Point and Fast Point Feature Histograms with RANSAC. I developed skills in sensor calibration and hardware-software integration, particularly when prototyping with motorized tracks, stepper motors, and spinning LIDARs—components that informed our design decisions even though they didn't appear in the final implementation.
-                        <br>
-                        This experience strengthened my abilities in data pipeline development, managing the flow from raw sensor input through processing stages to final output, as well as technical documentation to track our design iterations and performance benchmarks. The collaborative nature of the project enhanced my research communication skills and ability to integrate complementary technical expertise toward a unified goal.
-                    </p>
-
-                    <div class="video-container" onclick="openLightbox(this.querySelector('video').src, 'video')">
-                        <video controls>
-                            <source src="img/4D_body_scanner/cat_wave_trimmed.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
-                        </video>
-                    </div>
-                    
-                    <div class="image-gallery">
-                        <img src="img/4D_body_scanner/full_design_v2.png" alt="Scanner Design" onclick="openLightbox(this.src)">
-                        <img src="img/4D_body_scanner/human_constraints_diagram-1.png" alt="Human Constraints" onclick="openLightbox(this.src)">
-                        <img src="img/4D_body_scanner/setup_checkerboard.png" alt="Calibration Setup" onclick="openLightbox(this.src)">
+    
+                <!-- Tutle Project Page -->
+                <div id="tutle-project" class="page">
+                    <button class="back-btn" onclick="showPage('main-page')">← Back to Home</button>
+                    <div class="project-content">
+                        <span class="status-badge status-in-progress">In Progress</span>
+                        <h1>Tutle: A Tutor-Student Marketplace</h1>
+                        
+                        <p>
+                            Co-leading a team of 7 developers to build a comprehensive commercial tutoring mobile application that connects students with qualified tutors through a secure, feature-rich platform. The application addresses both sides of the tutoring marketplace: empowering tutors with professional practice management tools while providing students with an intuitive interface for discovering and engaging with quality educators.
+                            <br><br>
+                            Built with React Native to provide a seamless cross-platform experience on both iOS and Android devices, leveraging a single codebase for efficient development and consistent user experience. The backend infrastructure utilizes PostgreSQL for robust relational data management, handling complex relationships between users, sessions, payments, and reviews.
+                            <br><br>
+                            For tutors, the application provides a comprehensive session management dashboard for tracking student progress, scheduling, and earnings, along with a custom booking platform that allows them to set availability, pricing, and subject specialties. The system includes automated session reminders, calendar integration, and performance analytics to help tutors monitor student engagement and optimize their teaching practice.
+                            <br><br>
+                            For students, the platform offers advanced tutor discovery with filtering capabilities by subject, location, price range, and availability. Students have access to their own session management interface for organizing upcoming appointments, tracking completed sessions, and managing their tutoring schedule. The platform includes an innovative Tamagotchi-style gamification feature that motivates continued engagement by rewarding students with points for booking sessions, attending their tutoring appointments, and leaving reviews. These earned points can be used to care for and interact with their virtual companion, creating a playful incentive system that encourages consistent participation in their educational journey. Students can also access their complete session history, visualize their progress over time, and utilize an integrated review and rating system to inform future booking decisions.
+                            <br><br>
+                            Safety and trust are foundational to the platform. All tutors must submit vulnerable sector checks before being approved to offer services, ensuring student safety for in-person sessions. The application implements secure payment processing through Stripe, with payments processed immediately upon session booking to protect both parties and streamline the transaction flow.
+                            <br><br>
+                            A key feature of the platform is the real-time map integration that allows users to securely share their location and find each other for in-person tutoring sessions. This feature prioritizes user privacy by only sharing location data during active session windows and implementing proximity-based meeting coordination to ensure safe and convenient meetups.
+                            <br><br>
+                            The project architecture emphasizes scalability and maintainability, leveraging Supabase as the backend-as-a-service platform to manage database operations, authentication, and real-time data synchronization. The implementation utilizes Supabase's client libraries for efficient database queries and real-time subscriptions for live booking updates and messaging features. The system implements secure authentication and authorization protocols to protect sensitive user data and payment information. Integrating AI-powered development assistants into the workflow to optimize code quality, debug efficiently, and explore alternative architectural approaches has enhanced development velocity and code reliability.
+                            <br><br>
+                            As co-lead, I am responsible for UI and UX design decisions, technical architecture decisions, sprint planning and task delegation, code review processes, and ensuring adherence to best practices in mobile development. This project is developing my skills in React Native mobile development and cross-platform optimization, team leadership and project management, PostgreSQL database schema design, backend integration with Supabase, payment gateway integration with the Stripe API, real-time location services and mapping APIs, security best practices and user data protection, AI-assisted development workflows, stakeholder communication and product planning.
+                        </p>
                     </div>
                 </div>
-
-                <div class="project-section">
-                    <h3>Mentor Match</h3>
-                    
-
-                    
-                    <p>
-                        I co-led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. It was built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture to ensure separation of concerns, maintainability, and testability. The back-end was integrated with Firebase, including Firebase Authentication for secure user login, Cloud Firestore for real-time database management, and Firebase Storage for user profile media.
-                        <br>
-                        We implemented custom UI components including a swipe-card gesture interface, a calendar and availability interface, real-time chat messaging, and a review and booking system. The availability management features allowed users to input their availability, behaving as a bitmap that could efficiently find openings in the schedule of students and tutors which informed our matching algorithm. The real-time chat system used Firebase Cloud Messaging to facilitate seamless communication between matched users. 
-                        <br>
-                        The application architecture emphasized clean code principles and scalability, with a well-structured repository pattern for data access and reactive programming using LiveData and ViewModel for UI state management. Implemented proper error handling and input validation to ensure a robust user experience.
-                        <br>
-                        To maintain team cohesion and organization, we engaged in agile development practices, including sprint planning, pair programming, and iterative feature deployment. Used Git for version control.
-                        <br><br>
-                        <bold>Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.</bold>
-                    </p>
-                    <div class="image-gallery">
-                        <img src="img/MentorMatch/image-2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-3.png" alt="Profile View" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-4.png" alt="Match Screen" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image-6.png" alt="Additional Feature" onclick="openLightbox(this.src)">
-                        <img src="img/MentorMatch/image.png" alt="App Overview" onclick="openLightbox(this.src)">
+    
+                <!-- 4D Scanner Project Page -->
+                <div id="scanner-project" class="page">
+                    <button class="back-btn" onclick="showPage('main-page')">← Back to Home</button>
+                    <div class="project-content">
+                        <span class="status-badge status-completed">Completed</span>
+                        <h1>4D Body Scanning for Remote Health Monitoring</h1>
+                        
+                        <div class="video-container" onclick="openLightbox(this.querySelector('video').src, 'video')">
+                            <video controls>
+                                <source src="img/4D_body_scanner/cat_wave_trimmed.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        
+                        <div class="image-gallery">
+                            <img src="img/4D_body_scanner/full_design_v2.png" alt="Scanner Design" onclick="openLightbox(this.src)">
+                            <img src="img/4D_body_scanner/human_constraints_diagram-1.png" alt="Human Constraints" onclick="openLightbox(this.src)">
+                            <img src="img/4D_body_scanner/setup_checkerboard.png" alt="Calibration Setup" onclick="openLightbox(this.src)">
+                        </div>
+                        
+                        <p>
+                            I collaborated with a fellow student under the supervision of Dr. Jeffrey Davis to develop a real-time 4D body scanning system capable of capturing dynamic human motion. The project leveraged OpenCV for computer vision processing, the Point Cloud Library (PCL) and Open3D for 3D data manipulation and reconstruction.
+                            <br><br>
+                            During the development phase, I conducted a comprehensive feasibility analysis of two competing system architectures: a stationary multi-sensor array and a rotational scanning design. By examining human and practical constraints against the limitations of each system, we determined that the rotational approach was necessary to achieve our target frame rate while maintaining scan quality. This process deepened my understanding of system architecture design and the engineering trade-offs involved in design.
+                            <br><br>
+                            The project required extensive work in system calibration and synchronization to ensure accurate data capture across multiple sensors as well as point cloud processing and registration for the merging of and creating on 3D + time datasets. The alignment algorithms that were utilized were Iterative Closest Point and Fast Point Feature Histograms with RANSAC. I developed skills in sensor calibration and hardware-software integration, particularly when prototyping with motorized tracks, stepper motors, and spinning LIDARs—components that informed our design decisions even though they didn't appear in the final implementation.
+                            <br><br>
+                            This experience strengthened my abilities in data pipeline development, managing the flow from raw sensor input through processing stages to final output, as well as technical documentation to track our design iterations and performance benchmarks. The collaborative nature of the project enhanced my research communication skills and ability to integrate complementary technical expertise toward a unified goal.
+                        </p>
                     </div>
                 </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
-            <img id="lightbox-img" src="" alt="Enlarged view" style="display: none;">
-            <video id="lightbox-video" controls style="display: none;">
-                <source src="" type="video/mp4">
-            </video>
-        </div>
-    </div>
-
-    <!-- Resume Modal -->
-    <div id="resumeModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeResume()">&times;</span>
-            <h2>Resume & CV</h2>
-            <button class="download-btn" onclick="downloadResume()">📥 Download PDF</button>
-            
-            <div style="margin-top: 2rem; padding: 2rem; background: #f9f9f9; border-radius: 10px;">
-                <h3>Your Name</h3>
-                <p>Email: your.email@example.com | Phone: (123) 456-7890</p>
-                <p>LinkedIn: linkedin.com/in/yourname | Portfolio: yourwebsite.com</p>
-                
-                <h4 style="margin-top: 2rem; color: #4a7c59;">Education</h4>
-                <p><strong>Bachelor of Science in [Your Major]</strong><br>
-                University Name, Graduation Year<br>
-                GPA: X.XX/4.0 | Relevant Coursework: List key courses</p>
-                
-                <h4 style="margin-top: 2rem; color: #4a7c59;">Experience</h4>
-                <p><strong>Job Title</strong> - Company Name (Dates)<br>
-                • Bullet point describing your responsibilities and achievements<br>
-                • Another bullet point with quantifiable results<br>
-                • Third bullet point showcasing relevant skills</p>
-                
-                <h4 style="margin-top: 2rem; color: #4a7c59;">Research Experience</h4>
-                <p><strong>Research Position</strong> - Institution (Dates)<br>
-                • Description of research project and your contributions<br>
-                • Methodology and tools used<br>
-                • Results or publications</p>
-                
-                <h4 style="margin-top: 2rem; color: #4a7c59;">Skills</h4>
-                <p><strong>Technical:</strong> Programming languages, software, tools<br>
-                <strong>Languages:</strong> List languages and proficiency levels<br>
-                <strong>Research:</strong> Relevant research skills and methodologies</p>
-                
-                <h4 style="margin-top: 2rem; color: #4a7c59;">Awards & Publications</h4>
-                <p>• List any academic awards, scholarships, or honors<br>
-                • Include publications, presentations, or significant projects<br>
-                • Mention any leadership roles or extracurricular activities</p>
+    
+                <!-- Mentor Match Project Page -->
+                <div id="mentor-match-project" class="page">
+                    <button class="back-btn" onclick="showPage('main-page')">← Back to Home</button>
+                    <div class="project-content">
+                        <span class="status-badge status-completed">Completed</span>
+                        <h1>Mentor Match</h1>
+                        
+                        <div class="image-gallery">
+                            <img src="img/MentorMatch/image-2.png" alt="Swipe Interface" onclick="openLightbox(this.src)">
+                            <img src="img/MentorMatch/image-3.png" alt="Profile View" onclick="openLightbox(this.src)">
+                            <img src="img/MentorMatch/image-4.png" alt="Match Screen" onclick="openLightbox(this.src)">
+                            <img src="img/MentorMatch/image-5.png" alt="Chat Feature" onclick="openLightbox(this.src)">
+                            <img src="img/MentorMatch/image-6.png" alt="Additional Feature" onclick="openLightbox(this.src)">
+                            <img src="img/MentorMatch/image.png" alt="App Overview" onclick="openLightbox(this.src)">
+                        </div>
+                        
+                        <p>
+                            I co-led a team of 5 to design and develop Mentor Match, a mobile tutor-student matching application featuring an intuitive swipe-card interface for discovering and connecting with tutors. It was built with Kotlin in Android Studio following the Model-View-ViewModel (MVVM) architecture to ensure separation of concerns, maintainability, and testability. The back-end was integrated with Firebase, including Firebase Authentication for secure user login, Cloud Firestore for real-time database management, and Firebase Storage for user profile media.
+                            <br><br>
+                            We implemented custom UI components including a swipe-card gesture interface, a calendar and availability interface, real-time chat messaging, and a review and booking system. The availability management features allowed users to input their availability, behaving as a bitmap that could efficiently find openings in the schedule of students and tutors which informed our matching algorithm. The real-time chat system used Firebase Cloud Messaging to facilitate seamless communication between matched users. 
+                            <br><br>
+                            The application architecture emphasized clean code principles and scalability, with a well-structured repository pattern for data access and reactive programming using LiveData and ViewModel for UI state management. Implemented proper error handling and input validation to ensure a robust user experience.
+                            <br><br>
+                            The team engaged in agile development practices, including sprint planning, pair programming, and iterative feature deployment. Used Git for version control.
+                            <br><br>
+                            Project developed in a Software Engineering class competition (12 teams). Awarded first place for best overall app by a judging panel of Computer Science professors and student representatives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <img id="lightbox-img" src="" alt="Enlarged view" style="display: none;">
+                <video id="lightbox-video" controls style="display: none;">
+                    <source src="" type="video/mp4">
+                </video>
             </div>
         </div>
-    </div>
-
-    <script>
-        // Smooth scrolling for navigation
-        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    
+        <script>
+            // Page navigation
+            function showPage(pageId) {
+                // Hide all pages
+                document.querySelectorAll('.page').forEach(page => {
+                    page.classList.remove('active');
+                });
+                
+                // Show selected page
+                document.getElementById(pageId).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+    
+            function showProject(projectId) {
+                showPage(projectId);
+            }
+    
+            // Lightbox functions
+            function openLightbox(src, type = 'image') {
+                const lightbox = document.getElementById('lightbox');
+                const img = document.getElementById('lightbox-img');
+                const video = document.getElementById('lightbox-video');
+                
+                if (type === 'video') {
+                    img.style.display = 'none';
+                    video.style.display = 'block';
+                    video.querySelector('source').src = src;
+                    video.load();
+                } else {
+                    video.style.display = 'none';
+                    img.style.display = 'block';
+                    img.src = src;
+                }
+                
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+    
+            function closeLightbox() {
+                const lightbox = document.getElementById('lightbox');
+                const video = document.getElementById('lightbox-video');
+                
+                lightbox.classList.remove('active');
+                video.pause();
+                document.body.style.overflow = 'auto';
+            }
+    
+            // Resume download function
+            function downloadResume() {
+                alert('In a real website, this would download your resume PDF file. Please upload your actual resume PDF and link it here!');
+                
+                // Example of how to trigger a PDF download:
+                // const link = document.createElement('a');
+                // link.href = 'path/to/your/resume.pdf';
+                // link.download = 'YourName_Resume.pdf';
+                // link.click();
+            }
+    
+            // Close lightbox with Escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    closeLightbox();
                 }
             });
-        });
-
-        // Lightbox functions
-        function openLightbox(src, type = 'image') {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            const video = document.getElementById('lightbox-video');
-            
-            if (type === 'video') {
-                img.style.display = 'none';
-                video.style.display = 'block';
-                video.querySelector('source').src = src;
-                video.load();
-            } else {
-                video.style.display = 'none';
-                img.style.display = 'block';
-                img.src = src;
-            }
-            
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            const video = document.getElementById('lightbox-video');
-            
-            lightbox.classList.remove('active');
-            video.pause();
-            document.body.style.overflow = 'auto';
-        }
-
-        // Resume modal functions
-        function openResume() {
-            document.getElementById('resumeModal').style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeResume() {
-            document.getElementById('resumeModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-
-        function downloadResume() {
-            alert('In a real website, this would download your resume PDF file. Please upload your actual resume PDF and link it here!');
-        }
-
-        // Close modals when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('resumeModal');
-            if (event.target === modal) {
-                closeResume();
-            }
-        }
-
-        // Close lightbox with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeLightbox();
-                closeResume();
-            }
-        });
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
+    Website CV image layout - Claude
