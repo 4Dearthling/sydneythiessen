@@ -819,13 +819,13 @@
     
             // Resume download function
             function downloadResume() {
-                alert('In a real website, this would download your resume PDF file. Please upload your actual resume PDF and link it here!');
+                alert('Thank you for downloading my resume, it should be ready in your Downloads folder!');
                 
                 // Example of how to trigger a PDF download:
-                // const link = document.createElement('a');
-                // link.href = 'path/to/your/resume.pdf';
-                // link.download = 'YourName_Resume.pdf';
-                // link.click();
+                const link = document.createElement('a');
+                link.href = 'Resume2025ST.pdf';
+                link.download = 'SydneyThiessenResume.pdf';
+                link.click();
             }
     
             // Close lightbox with Escape key
