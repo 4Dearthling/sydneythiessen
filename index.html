@@ -659,9 +659,15 @@
                         <div class="image-gallery">
                             <img src="img/Dysarthria_classifier/ID319_phonationU.png" alt="Phonation Analysis" onclick="openLightbox(this.src)">
                             <img src="img/Dysarthria_classifier/ID333_rhythmTA.png" alt="Rhythm Analysis" onclick="openLightbox(this.src)">
-                            <a href="CMPT491_2025_G1.pdf" target="_blank" rel="noopener noreferrer">
-  Open PDF Document
-</a>
+                            <div class="pdf-preview" onclick="window.open('CMPT491_2025_G1.pdf', '_blank')">
+                            <iframe src="CMPT491_2025_G1.pdf#page=1" 
+                                frameborder="0" 
+                                scrolling="no"
+                                style="pointer-events: none; width: 100%; height: 100%;"></iframe>
+                            <div class="pdf-overlay">
+                                <span>📄 Click to Open Full PDF</span>
+                            </div>
+                        </div>
                         </div>
                         
                         <p>
