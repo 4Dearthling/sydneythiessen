@@ -568,18 +568,19 @@
                             <button class="download-btn" onclick="downloadResume()">Download PDF</button>
                         </div>
                         <p class="intro-text">
-                            I am student at MacEwan University in my last semester of my second degree in Computer Science with a 3.87 GPA. My first degree is from the University of Alberta in Mechanical Engineering. I have worked on and I am working on a wide range of projects, from designing and building a 4D Body Scanner for use in a telehealth setting, to researching, designing, and building a tutoring platform, to building a model to classify and predict the progression of dysarthria in ALS patients.
-                            My classwork has given me a strong foundation in data structures, databases, machine learning, data science and software engineering principles. I have also gained experience in computer vision and signal processing through various projects.
-                            <br><br>
+                        I am a recent graduate of MacEwan University, where I completed my degree with a GPA of 3.85. I previously earned a degree in Mechanical Engineering from the University of Alberta.                          Alongside my academic background, I have developed strong leadership skills through hands-on project work. I have led several projects, including the development of a commercial                             student tutor marketplace, tutle, which is scheduled to launch later this year. I have also pursued research-oriented work, designing and building a 4D body scanner for telehealth                           applications over a three-month period.
+
+                        Currently, with funding from the Agricultural Financial Services Corporation, I am conducting research on determining optimal premium rates for crop insurance. By applying machine                             learning methods, this work aims to balance risk reduction with long-term affordability.
+
+                            <!--<br><br>
                             My passion is in building technology that helps people reclaim autonomy and control in an otherwise chaotic world. I hope to combine my love of problem-solving, mathematics, and engineering to build technological interventions that help people focus stay focused on their daily life while maintaining healthy and functioning relationships with their technology. 
-                        </p>
+                        </p>-->
     
                         <h2>Education</h2>
                         <div style="margin-bottom: 2rem;">
                             <div style="margin-bottom: 2rem;">
                                 <h3 style="margin-top: 0; color: #4a7c59;">Bachelor of Science in Computer Science</h3>
-                                <p style="color: #6b9d6b; font-weight: 500; margin-bottom: 0.5rem;">MacEwan University | 2023 - Present</p>
-                                <p style="color: #4a5d4a; line-height: 1.6; margin-bottom: 0.5rem;">Anticipated completion: December 2025 | GPA: 3.87</p>
+                                <p style="color: #6b9d6b; font-weight: 500; margin-bottom: 0.5rem;">MacEwan University | 2023 - 2025 | GPA: 3.85</p>
                                 <ul style="color: #4a5d4a; line-height: 1.8; margin-left: 1.5rem;">
                                     <li>Experience with Python, C, C#.net, SQL and Azure Data Studio</li>
                                     <li>Built a fully functional game in Python</li>
@@ -653,7 +654,7 @@
                 <div id="als-project" class="page">
                     <button class="back-btn" onclick="showPage('main-page')">← Back to Home</button>
                     <div class="project-content">
-                        <span class="status-badge status-in-progress">In Progress</span>
+                        <span class="status-badge status-completed">Completed</span>
                         <h1>Computational Modeling of Speech-Based Biomarkers for ALS Assessment</h1>
                         
                         <div class="image-gallery">
@@ -662,15 +663,16 @@
                         </div>
                         
                         <p>
-                            Currently participating in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR's Institute for High Performance Computing and Networking, with the opportunity for top-performing teams to present at IEEE ICASSP 2026. The challenge addresses the critical need for objective, noninvasive biomarkers to enable early diagnosis and monitoring of neurodegenerative diseases, particularly amyotrophic lateral sclerosis (ALS).
+                       I have completed participation in the Speech Analysis for Neurodegenerative Diseases (SAND) challenge, organized by ICAR-CNR’s Institute for High Performance Computing and Networking. Our work is documented in the attached paper, which details the development and evaluation of machine learning models for speech-based assessment of neurodegenerative disease severity, with a focus on amyotrophic lateral sclerosis (ALS).
                             <br><br>
-                            Working to develop machine learning models for two complementary tasks using speech signal data. The first task involves multi-class classification to categorize dysarthria severity across five classes ranging from severe ALS-related speech impairment to healthy speech. This is developing my skills in audio signal processing, including feature extraction from patient speech recordings, and implementing an audio spectrogram transformer architecture to classify severity levels while addressing class imbalance, where the dataset contains significantly more samples from some severity categories than others (such as more healthy patients than those with severe dysarthria).
+
+The project focused on multi-class classification of dysarthria severity using speech signal data, with categories ranging from severe ALS-related speech impairment to healthy speech. This work involved extensive audio preprocessing, feature extraction, and the implementation of an Audio Spectrogram Transformer architecture, along with strategies to address significant class imbalance in the dataset. The goal was to assess whether transformer-based models could reliably distinguish clinically meaningful severity levels from phonation and rhythmic speech recordings.
                             <br><br>
-                            The second task focuses on predictive modeling to forecast disease progression by estimating future ALSFRS-R scale values based on historical patient data. This prediction challenge is strengthening my abilities in analyzing data collected over time from the same patients, building regression models to predict numerical severity scores, and understanding how speech impairment patterns evolve as the disease progresses.
+
+While the paper reports results obtained on labeled validation and test data, one outcome not discussed is what occurred after submission to the challenge. When the trained model was evaluated on unlabeled competition data, it substantially overgeneralized, assigning approximately 70% of cases to the “3 – mild dysarthria” category. This behavior highlighted the impact of severe dataset imbalance and exposed limitations in the model’s ability to generalize beyond the training distribution.
                             <br><br>
-                            Through this ongoing work, I am gaining experience in biomedical signal analysis and transformer-based architectures for audio processing, learning to extract clinically meaningful acoustic features such as prosody, phonation quality, and articulation metrics from spectrogram representations. I am developing skills in data preprocessing and augmentation techniques specific to audio data, as well as hyperparameter optimization to maximize model performance.
-                            <br><br>
-                            This challenge is enhancing my research and literature review skills as I examine the use of audio spectrogram transformers for dysarthria classification, evaluating how this state-of-the-art approach performs on phonation-based speech data rather than word-based speech, specifically sustained vowels (A, E, I, O, U) and rhythmic syllable sequences (TA, PA, KA). This interdisciplinary project bridges computer science, machine learning, and clinical neuroscience, integrating signal processing and health data analysis to develop tools that could aid in the early detection and monitoring of neurodegenerative diseases.
+
+Through this project, I gained practical experience working with transformer-based models for audio, generating and interpreting spectrogram representations, and handling imbalanced biomedical datasets. I also developed a clearer understanding of common failure modes in machine learning systems, particularly how models that perform well under controlled evaluation can behave differently when deployed on unseen data. Overall, this work strengthened my skills in audio signal processing, applied machine learning, and critical evaluation of model generalization in a clinical research context.
                         </p>
                     </div>
                 </div>
